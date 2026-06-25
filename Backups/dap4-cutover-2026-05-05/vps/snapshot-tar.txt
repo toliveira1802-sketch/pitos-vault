@@ -1,0 +1,1 @@
+-rw-r--r-- 1 root root 7.4K May  5 14:59 /tmp/chromadb-snapshot-2026-05-05.tar.gz

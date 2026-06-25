@@ -1,0 +1,9 @@
+# macOS / Windows noise
+.DS_Store
+Thumbs.db
+
+# Obsidian app config — machine-local, not user content
+.obsidian/
+
+# Local trash
+.trash/

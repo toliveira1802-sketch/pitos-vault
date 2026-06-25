@@ -1,0 +1,7 @@
+total 192
+drwxr-xr-x 5 root root   4096 May  4 16:14 .
+drwxr-xr-x 1 root root   4096 Apr 24 06:45 ..
+drwxr-xr-x 2 root root   4096 May  4 16:14 66d2f316-a526-4fa9-bf08-cdc169176683
+-rw-r--r-- 1 root root 167936 Apr 24 06:46 chroma.sqlite3
+drwxr-xr-x 2 root root   4096 May  4 16:14 d3323e1b-7072-427f-97fd-967fa754dca8
+drwxr-xr-x 2 root root   4096 May  4 16:14 fd866f2f-d736-441c-af9a-403ddf5b6822

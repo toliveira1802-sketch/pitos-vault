@@ -1,0 +1,40 @@
+{
+  "project": "DOCTOR PRIME",
+  "project_id": "acuufrgoyjwzlyhopaus",
+  "snapshot_at": "2026-05-05",
+  "source": "SELECT * FROM pg_policies WHERE schemaname='public'",
+  "policy_count": 86,
+  "buckets": {
+    "anon_open_legacy": {
+      "description": "Open anon read/write/update policies on legacy oficina tables. SECURITY HOLE: roles={public}, qual=true. Anon key can read/write everything.",
+      "tables": ["agendamentos", "clients", "colaboradores", "companies", "mecanicos", "oficina_config", "ordens_servico", "ordens_servico_historico", "ordens_servico_itens", "pendencias", "recursos", "recusas", "vehicles", "pecas_encontradas"],
+      "policy_naming": "anon_read_NN_TABLE / anon_update_NN_TABLE / anon_write_NN_TABLE"
+    },
+    "service_role_only": {
+      "description": "auth.role() = 'service_role' only. Properly locked.",
+      "tables": ["ai_agent_config", "ai_api_keys", "ai_conversations", "ai_messages", "crm_leads_externo", "customer_profiles", "enrichment_queue", "mecanico_feedback", "rag_documents", "scrape_checkpoints", "sofia_actions"]
+    },
+    "tenant_isolation": {
+      "description": "qual = (tenant_id = current_setting('app.current_tenant', true))",
+      "tables": ["anna_conversations", "anna_inbox", "kommo_channels", "kommo_conversations", "kommo_messages"]
+    },
+    "current_empresa_id": {
+      "description": "Multi-tenant via current_empresa_id() function (Oficina Pro module)",
+      "tables": ["os_anexos", "os_checklists", "os_payments"]
+    },
+    "auth_uid_owner": {
+      "description": "user_id = auth.uid() RLS",
+      "tables": ["parts_inventory", "parts_price_alerts", "parts_search_history"]
+    },
+    "authenticated_read": {
+      "description": "Authenticated public-catalog read",
+      "tables": ["compatible_vehicles", "part_equivalents", "parts", "parts_price_records", "parts_price_sources"]
+    },
+    "anon_insert_only": {
+      "tables": ["campaign_leads"]
+    },
+    "workflow_etapas": {
+      "description": "anon read + service_role full"
+    }
+  }
+}

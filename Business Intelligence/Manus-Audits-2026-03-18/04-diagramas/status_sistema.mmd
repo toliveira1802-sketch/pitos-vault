@@ -1,0 +1,42 @@
+graph TB
+    subgraph "JÁ FUNCIONA"
+        style JÁ FUNCIONA fill:#d4edda
+        A1["Ana — Agente IA<br/>Loop agêntico + 5 tools"]
+        A2["Crons Automáticos<br/>Vigilante · Analista<br/>Reativador · Relatório"]
+        A3["Kommo CRM<br/>Leitura + Escrita"]
+        A4["Supabase<br/>Logs · Conversas · Campanhas"]
+        A5["Slack<br/>Notificações"]
+    end
+
+    subgraph "PRECISA CORRIGIR"
+        style PRECISA CORRIGIR fill:#fff3cd
+        B1["Segurança Webhook"]
+        B2["Limite Loop IA"]
+        B3["IDs Kommo Hardcoded"]
+        B4["Credenciais Expostas"]
+    end
+
+    subgraph "FALTA CONSTRUIR"
+        style FALTA CONSTRUIR fill:#f8d7da
+        C1["Motor RAG<br/>Manuais + Preços"]
+        C2["Dashboard Web<br/>Executivo"]
+        C3["Agenda + Pátio Digital"]
+        C4["Sistema de OS"]
+        C5["Orçamento + Aprovação"]
+        C6["Área do Cliente"]
+        C7["Financeiro"]
+    end
+
+    A1 -->|corrigir| B1
+    A1 -->|corrigir| B2
+    A3 -->|corrigir| B3
+    A4 -->|corrigir| B4
+
+    B1 -->|libera| C1
+    B2 -->|libera| C1
+    C1 -->|alimenta| C2
+    C2 --> C3
+    C3 --> C4
+    C4 --> C5
+    C5 --> C6
+    C6 --> C7

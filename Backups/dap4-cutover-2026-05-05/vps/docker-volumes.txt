@@ -1,0 +1,8 @@
+DRIVER    VOLUME NAME
+local     dap4_brain
+local     dap4_chroma
+local     dap4_uploads
+local     doctor-auto-ai_caddy_config
+local     doctor-auto-ai_caddy_data
+local     doctor-auto-ai_chroma_data
+local     doctor-auto-ai_uploads_data

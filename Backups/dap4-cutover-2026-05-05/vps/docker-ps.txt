@@ -1,0 +1,6 @@
+NAMES                      IMAGE                           STATUS                  PORTS
+doctor-auto-ai-gateway-1   doctor-auto-ai-gateway          Up 21 hours (healthy)   3001/tcp
+dap4-portal-familia        doctor-auto-ai-portal-familia   Up 10 days              80/tcp
+dap4-caddy                 caddy:2-alpine                  Up 10 days              443/tcp, 0.0.0.0:80->80/tcp, [::]:80->80/tcp, 2019/tcp, 443/udp
+dap4-agents                doctor-auto-ai-agents           Up 10 days (healthy)    8000/tcp
+dap4-chromadb              chromadb/chroma:0.5.23          Up 11 days (healthy)    8000/tcp

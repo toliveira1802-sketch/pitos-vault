@@ -1,0 +1,33 @@
+graph LR
+    subgraph ENTRADA["Entrada"]
+        L1["Lead chega<br/>WhatsApp / Insta / Site"]
+    end
+
+    subgraph INTERNO["CRM Interno"]
+        L2["Ana atende<br/>e qualifica"]
+        L3{"Fechou?"}
+        L4["Agenda<br/>serviço"]
+        L5["OS + Execução<br/>+ Pagamento"]
+        L6["Pós-venda<br/>30 dias"]
+    end
+
+    subgraph EXTERNO["CRM Externo - Lago"]
+        L7["Entra no Lago<br/>com tag + motivo"]
+        L8["Score calculado<br/>Quente/Morno/Frio"]
+        L9["Pescadora analisa<br/>campanha + perfil"]
+        L10{"Respondeu?"}
+    end
+
+    L1 --> L2
+    L2 --> L3
+    L3 -->|"SIM"| L4
+    L4 --> L5
+    L5 --> L6
+    L6 -->|"Sem retorno<br/>após 60 dias"| L7
+
+    L3 -->|"NÃO"| L7
+    L7 --> L8
+    L8 --> L9
+    L9 --> L10
+    L10 -->|"SIM"| L2
+    L10 -->|"NÃO"| L8

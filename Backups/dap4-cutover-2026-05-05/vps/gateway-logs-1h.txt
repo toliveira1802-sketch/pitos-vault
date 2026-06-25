@@ -1,0 +1,20 @@
+{"level":"info","msg":"anna_inbox enqueued","brand_id":"dap_prime","ts":"2026-05-05T14:41:38.919Z"}
+{"level":"info","msg":"anna_inbox enqueued","brand_id":"dap_prime","ts":"2026-05-05T14:41:38.937Z"}
+{"level":"info","msg":"anna_inbox enqueued","brand_id":"dap_prime","ts":"2026-05-05T14:41:38.995Z"}
+{"level":"info","msg":"anna_inbox enqueued","brand_id":"dap_prime","ts":"2026-05-05T14:41:39.439Z"}
+{"level":"info","msg":"anna_inbox enqueued","brand_id":"dap_prime","ts":"2026-05-05T14:41:39.678Z"}
+{"level":"info","msg":"anna_inbox enqueued","brand_id":"dap_prime","ts":"2026-05-05T14:41:39.996Z"}
+{"level":"info","msg":"anna_inbox enqueued","brand_id":"dap_prime","ts":"2026-05-05T14:41:40.081Z"}
+{"level":"info","msg":"inbox event skipped (no text)","id":"cbf88bf0-1b60-49c5-9e1a-30d1b84064d9","brand":"dap_prime","ts":"2026-05-05T14:41:41.182Z"}
+{"level":"info","msg":"inbox event skipped (no text)","id":"b4cbc5c0-f364-4095-bd44-4b4295377250","brand":"dap_prime","ts":"2026-05-05T14:41:41.667Z"}
+{"level":"info","msg":"inbox event skipped (no text)","id":"86245be3-240f-415c-9ac0-4b7ad34a3d04","brand":"dap_prime","ts":"2026-05-05T14:41:42.114Z"}
+{"level":"info","msg":"inbox event skipped (no text)","id":"bf960333-5097-4cad-a00f-6d0b861ac393","brand":"dap_prime","ts":"2026-05-05T14:41:42.573Z"}
+{"level":"info","msg":"inbox event skipped (no text)","id":"981731f0-e0e6-4819-82d3-2ddf90fda8f3","brand":"dap_prime","ts":"2026-05-05T14:41:43.044Z"}
+{"level":"info","msg":"inbox event skipped (no text)","id":"df67bf88-bb0b-413e-8833-af4652e958ef","brand":"dap_prime","ts":"2026-05-05T14:41:43.492Z"}
+{"level":"info","msg":"inbox event skipped (no text)","id":"8b9a6580-b6d4-4e76-884e-2bd528a7c97c","brand":"dap_prime","ts":"2026-05-05T14:41:43.935Z"}
+{"level":"info","msg":"anna_inbox enqueued","brand_id":"dap_prime","ts":"2026-05-05T14:52:27.015Z"}
+{"level":"info","msg":"anna_inbox enqueued","brand_id":"dap_prime","ts":"2026-05-05T14:52:27.231Z"}
+{"level":"info","msg":"anna_inbox enqueued","brand_id":"dap_prime","ts":"2026-05-05T14:52:27.245Z"}
+{"level":"info","msg":"inbox event skipped (no text)","id":"1e4e2d7b-0b9c-4b9e-a3ff-c833dfecca94","brand":"dap_prime","ts":"2026-05-05T14:52:27.334Z"}
+{"level":"info","msg":"inbox event skipped (no text)","id":"85c9799b-072b-479e-b02e-a704b80a13cf","brand":"dap_prime","ts":"2026-05-05T14:52:27.812Z"}
+{"level":"info","msg":"inbox event skipped (no text)","id":"c8591376-2abb-4b86-9825-7b9a7526b904","brand":"dap_prime","ts":"2026-05-05T14:52:28.259Z"}

@@ -1,0 +1,39 @@
+gantt
+    title Roadmap de Criação — Sistema Doctor Auto Prime
+    dateFormat YYYY-MM-DD
+    axisFormat %b %Y
+
+    section SPRINT 0 — Correções Urgentes
+    Segurança webhook + max_steps          :s0a, 2026-03-25, 3d
+    Limpar credenciais expostas            :s0b, 2026-03-25, 1d
+    Descontinuar protótipo Python          :s0c, 2026-03-26, 2d
+    Testes básicos Ana + Crons             :s0d, after s0a, 4d
+
+    section SPRINT 1 — IA Operacional
+    Configurar unidades Prime e Bosch      :s1a, 2026-04-02, 3d
+    Mapear campos Kommo definitivos        :s1b, 2026-04-02, 2d
+    Ajustar cron Lembretes (campo data)    :s1c, after s1b, 3d
+    Ativar pgvector no Supabase            :s1d, after s1a, 2d
+    Migrar RAG Engine para Node.js         :s1e, after s1d, 10d
+    Upload de manuais e tabelas de preço   :s1f, after s1e, 5d
+    Nova tool: consultar_base_tecnica      :s1g, after s1e, 5d
+    Testar Ana com conhecimento real       :s1h, after s1g, 3d
+
+    section SPRINT 2 — Gestão da Oficina
+    Dashboard executivo (web)              :s2a, 2026-05-01, 10d
+    Agenda inteligente + Pátio Digital     :s2b, after s2a, 10d
+    Cadastro de clientes e veículos        :s2c, after s2a, 10d
+    Abertura e gestão de OS                :s2d, after s2b, 10d
+    Diagnóstico + Orçamento visual         :s2e, after s2d, 10d
+
+    section SPRINT 3 — Experiência do Cliente
+    Aprovação digital de orçamento         :s3a, 2026-06-19, 7d
+    Acompanhamento de serviço (fotos/status):s3b, after s3a, 7d
+    Notificações WhatsApp automáticas      :s3c, after s3a, 5d
+    Ritual de entrega digital              :s3d, after s3b, 5d
+
+    section SPRINT 4 — Financeiro e Go-Live
+    Módulo financeiro simplificado         :s4a, 2026-07-13, 10d
+    Histórico completo do cliente          :s4b, after s4a, 5d
+    Testes integrados end-to-end           :s4c, after s4b, 5d
+    Go-Live sistema completo               :milestone, after s4c, 0d

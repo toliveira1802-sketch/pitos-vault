@@ -1,0 +1,55 @@
+graph TB
+    subgraph "FASE 0 — Blindagem (Sem 1-2)"
+        A1["Segurança Webhooks<br/>HMAC + Rate Limit"]
+        A2["Limite Loop Agêntico<br/>max_steps = 3"]
+        A3["Testes Automatizados<br/>Ana + Crons"]
+    end
+
+    subgraph "FASE 1 — Fundação SaaS (Sem 3-6)"
+        B1["Multi-Tenant<br/>Supabase RLS"]
+        B2["Config Dinâmica<br/>Tokens + IDs Kommo"]
+        B3["Onboarding<br/>Automatizado"]
+    end
+
+    subgraph "FASE 2 — Motor RAG (Sem 7-10)"
+        C1["pgvector<br/>Supabase"]
+        C2["RAG Engine<br/>Node.js"]
+        C3["Upload Manuais<br/>Interface"]
+        C4["RAG nas Tools<br/>da Ana"]
+    end
+
+    subgraph "FASE 3 — Plataforma (Sem 11-18)"
+        D1["12 Telas<br/>Área da Oficina"]
+        D2["Área do Cliente<br/>App Web"]
+    end
+
+    subgraph "FASE 4 — Escala (Sem 19-24)"
+        E1["Admin<br/>Multi-Oficina"]
+        E2["Billing<br/>Stripe"]
+        E3["100 Oficinas<br/>Piloto"]
+    end
+
+    subgraph "FASE 5 — Marketplace (Sem 25-32)"
+        F1["Marketplace<br/>Peças"]
+        F2["Serviços<br/>Financeiros"]
+        F3["10.000<br/>Oficinas"]
+    end
+
+    A1 --> B1
+    A2 --> B1
+    A3 --> B1
+    B1 --> B2
+    B2 --> B3
+    B1 --> C1
+    C1 --> C2
+    C2 --> C3
+    C2 --> C4
+    B3 --> D1
+    C4 --> D1
+    D1 --> D2
+    D2 --> E1
+    E1 --> E2
+    E2 --> E3
+    E3 --> F1
+    F1 --> F2
+    F2 --> F3

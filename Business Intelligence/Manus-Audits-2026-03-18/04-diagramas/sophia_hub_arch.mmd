@@ -1,0 +1,43 @@
+graph TB
+    subgraph "Canais de Entrada"
+        WH["WhatsApp<br/>(via Kommo Webhook)"]
+        WEB["Frontend React<br/>(Terminal de Chat)"]
+    end
+
+    subgraph "Vercel Serverless"
+        ANA["api/ana.js<br/>Loop Agêntico<br/>Claude Sonnet"]
+        CHAT["api/chat.js<br/>Proxy Anthropic"]
+        
+        subgraph "Crons Automáticos"
+            VIG["Vigilante<br/>5 min"]
+            ANL["Analista<br/>10 min"]
+            REAT["Reativador<br/>08:00"]
+            LEM["Lembretes<br/>18:00"]
+            REL["Relatório<br/>19:00"]
+        end
+    end
+
+    subgraph "Tools da Ana"
+        T1["vigilante_verificar"]
+        T2["analista_qualificar"]
+        T3["reativador_engajar"]
+        T4["vendas_suporte"]
+        T5["agendador_confirmar"]
+    end
+
+    subgraph "Infraestrutura"
+        SUP["Supabase<br/>ana_conversas<br/>ana_logs<br/>ana_campanhas"]
+        KOM["Kommo CRM<br/>API v4<br/>Leads + Tasks"]
+        SLK["Slack<br/>Notificações"]
+    end
+
+    WH --> ANA
+    WEB --> CHAT
+    ANA --> T1 & T2 & T3 & T4 & T5
+    T1 & T2 & T3 & T4 & T5 --> KOM
+    T1 & T2 & T3 & T4 & T5 --> SUP
+    ANA --> SUP
+    VIG & ANL & REAT & LEM & REL --> KOM
+    VIG & ANL & REAT & LEM & REL --> SUP
+    REL --> SLK
+    VIG --> SLK

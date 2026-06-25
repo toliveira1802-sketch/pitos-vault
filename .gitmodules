@@ -1,3 +1,4 @@
 [submodule "chapapiuro-memoria"]
 	path = chapapiuro-memoria
 	url = https://github.com/toliveira1802-sketch/chapapiuro-memoria.git
+	branch = main

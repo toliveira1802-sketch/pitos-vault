@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+sqlite3.OperationalError: no such column: s.embedding_id
+=== collections ===
+('05aa3aef-4c5e-4ab7-811e-8ce709b01104', 'study_car_manuals', None)
+('cdb9df8f-803a-468d-82fd-1ada6c73f0c7', 'study_industry_news', None)
+('e49354a8-1180-401e-b606-0d16fa1d2797', 'study_diagnostic_kb', None)
+('7a5df9d0-ad5a-463b-baf4-2820e2228364', 'study_business_insights', None)
+('f45135b5-2415-49b2-b570-1ae268ca1cf2', 'ops_client_support', None)
+('9fd88ad4-9db9-453a-ae31-81475594a338', 'ops_service_procedures', None)
+('e45d23ed-74b1-420c-9668-d703c3fda396', 'ops_pricing_guidelines', None)
+=== embeddings_queue counts per collection ===

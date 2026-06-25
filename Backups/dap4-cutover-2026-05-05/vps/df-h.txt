@@ -1,0 +1,19 @@
+Filesystem      Size  Used Avail Use% Mounted on
+tmpfs           3.2G  1.8M  3.2G   1% /run
+/dev/sda1       387G   32G  356G   9% /
+tmpfs            16G     0   16G   0% /dev/shm
+tmpfs           5.0M     0  5.0M   0% /run/lock
+tmpfs            16G  117M   16G   1% /tmp
+/dev/sda13      989M  186M  737M  21% /boot
+/dev/sda15      105M  6.3M   99M   6% /boot/efi
+tmpfs           3.2G  8.0K  3.2G   1% /run/user/0
+tmpfs           1.0M     0  1.0M   0% /run/credentials/getty@tty1.service
+tmpfs           1.0M     0  1.0M   0% /run/credentials/serial-getty@ttyS0.service
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-journald.service
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-resolved.service
+tmpfs           1.0M     0  1.0M   0% /run/credentials/systemd-networkd.service
+overlay         387G   32G  356G   9% /var/lib/docker/rootfs/overlayfs/d5264d79482cb594766b6b6852f3651655afbeec489ed63e7253f5f6928d56c8
+overlay         387G   32G  356G   9% /var/lib/docker/rootfs/overlayfs/753a955faf5b773e676a50770c4b3875cff1f81ea2f9fee6a69dec3ee14d3a8c
+overlay         387G   32G  356G   9% /var/lib/docker/rootfs/overlayfs/deb5c9675de63fe560ce70a96d0808f48051ca34b2bc2b2a3d09476a83354440
+overlay         387G   32G  356G   9% /var/lib/docker/rootfs/overlayfs/e94a90183992a4d9e1e8619c7dcc261c1e1fa0cea72b10ffe94f5ed589e92466
+overlay         387G   32G  356G   9% /var/lib/docker/rootfs/overlayfs/cbaf5b2a1f10498a3d2062200de799cc324831a4302cae6ebae9b6dd47aa7934

@@ -1,0 +1,43 @@
+● dap-operacao.service - DAP Operacao (P0) - portal consultor
+     Loaded: loaded (/etc/systemd/system/dap-operacao.service; enabled; preset: enabled)
+     Active: active (running) since Tue 2026-05-05 13:56:30 UTC; 1h 3min ago
+ Invocation: 85dcd94f2f2d49d2b86b804f833b73d1
+   Main PID: 704208 (node)
+      Tasks: 19 (limit: 38428)
+     Memory: 31.2M (peak: 38.7M)
+        CPU: 1.261s
+     CGroup: /system.slice/dap-operacao.service
+             └─704208 /usr/bin/node /opt/dap-operacao/dist/index.cjs
+
+May 05 14:04:51 srv1303948 dap-operacao[704208]: 2:04:51 PM [express] POST /api/auth/login 200 in 127ms :: {"id":1,"organizationId":1,"username":"admin","name":"Administrador","role":"admin"}
+May 05 14:04:51 srv1303948 dap-operacao[704208]: 2:04:51 PM [express] GET /api/auth/me 200 in 6ms :: {"id":1,"organizationId":1,"username":"admin","name":"Administrador","role":"admin"}
+May 05 14:04:52 srv1303948 dap-operacao[704208]: 2:04:52 PM [express] GET /api/vehicles 200 in 2ms :: []
+May 05 14:04:52 srv1303948 dap-operacao[704208]: 2:04:52 PM [express] GET /api/customers 200 in 2ms :: []
+May 05 14:04:52 srv1303948 dap-operacao[704208]: 2:04:52 PM [express] GET /api/service-orders 200 in 8ms :: []
+May 05 14:04:52 srv1303948 dap-operacao[704208]: 2:04:52 PM [express] GET /api/stats 200 in 5ms :: {"totalOrders":0,"totalCustomers":0,"totalVehicles":0,"totalMechanics":0,"totalAppointments":0,"totalPaid":0,"statusCounts":{"diagnostico":0,"aguardando_aprovacao":0,"aprovado":0,"em_execucao":0,"aguardando_peca":0,"pronto":0,"entregue":0,"cancelado":0},"totalRevenue":0,"recentOrders":[]}
+May 05 14:04:52 srv1303948 dap-operacao[704208]: 2:04:52 PM [express] GET /api/appointments 200 in 1ms :: []
+May 05 14:04:53 srv1303948 dap-operacao[704208]: 2:04:53 PM [express] GET /api/mechanics 200 in 6ms :: []
+May 05 14:04:53 srv1303948 dap-operacao[704208]: 2:04:53 PM [express] GET /api/users 200 in 9ms :: [{"id":1,"organizationId":1,"username":"admin","name":"Administrador","role":"admin"}]
+---
+State  Recv-Q Send-Q Local Address:Port  Peer Address:PortProcess                                                                                                                                                                                                                                           
+LISTEN 0      511          0.0.0.0:5001       0.0.0.0:*    users:(("node",pid=704208,fd=28))                                                                                                                                                                                                                
+LISTEN 0      4096   127.0.0.53%lo:53         0.0.0.0:*    users:(("systemd-resolve",pid=2001918,fd=16))                                                                                                                                                                                                    
+LISTEN 0      4096       127.0.0.1:20241      0.0.0.0:*    users:(("cloudflared",pid=152731,fd=3))                                                                                                                                                                                                          
+LISTEN 0      511          0.0.0.0:443        0.0.0.0:*    users:(("nginx",pid=713569,fd=8),("nginx",pid=713568,fd=8),("nginx",pid=713567,fd=8),("nginx",pid=713565,fd=8),("nginx",pid=713564,fd=8),("nginx",pid=713563,fd=8),("nginx",pid=713562,fd=8),("nginx",pid=713561,fd=8),("nginx",pid=713559,fd=8))
+LISTEN 0      4096         0.0.0.0:80         0.0.0.0:*    users:(("docker-proxy",pid=2991057,fd=8))                                                                                                                                                                                                        
+LISTEN 0      4096         0.0.0.0:22         0.0.0.0:*    users:(("sshd",pid=2137001,fd=3),("systemd",pid=1,fd=287))                                                                                                                                                                                       
+LISTEN 0      151        127.0.0.1:3306       0.0.0.0:*    users:(("mysqld",pid=3629530,fd=23))                                                                                                                                                                                                             
+LISTEN 0      511        127.0.0.1:3080       0.0.0.0:*    users:(("nginx",pid=713569,fd=7),("nginx",pid=713568,fd=7),("nginx",pid=713567,fd=7),("nginx",pid=713565,fd=7),("nginx",pid=713564,fd=7),("nginx",pid=713563,fd=7),("nginx",pid=713562,fd=7),("nginx",pid=713561,fd=7),("nginx",pid=713559,fd=7))
+LISTEN 0      4096      127.0.0.54:53         0.0.0.0:*    users:(("systemd-resolve",pid=2001918,fd=18))                                                                                                                                                                                                    
+LISTEN 0      70         127.0.0.1:33060      0.0.0.0:*    users:(("mysqld",pid=3629530,fd=21))                                                                                                                                                                                                             
+LISTEN 0      5            0.0.0.0:9444       0.0.0.0:*    users:(("python3",pid=2677332,fd=3))                                                                                                                                                                                                             
+LISTEN 0      5            0.0.0.0:9443       0.0.0.0:*    users:(("python3",pid=2632353,fd=3))                                                                                                                                                                                                             
+LISTEN 0      511        127.0.0.1:57407      0.0.0.0:*    users:(("openclaw-gatewa",pid=2462367,fd=22))                                                                                                                                                                                                    
+LISTEN 0      511        127.0.0.1:57409      0.0.0.0:*    users:(("openclaw-gatewa",pid=2462367,fd=34))                                                                                                                                                                                                    
+LISTEN 0      511            [::1]:57407         [::]:*    users:(("openclaw-gatewa",pid=2462367,fd=23))                                                                                                                                                                                                    
+LISTEN 0      4096            [::]:80            [::]:*    users:(("docker-proxy",pid=2991065,fd=8))                                                                                                                                                                                                        
+LISTEN 0      4096            [::]:22            [::]:*    users:(("sshd",pid=2137001,fd=4),("systemd",pid=1,fd=288))                                                                                                                                                                                       
+--- pm2 ---
+┌────┬───────────┬─────────────┬─────────┬─────────┬──────────┬────────┬──────┬───────────┬──────────┬──────────┬──────────┬──────────┐
+│ id │ name      │ namespace   │ version │ mode    │ pid      │ uptime │ ↺    │ status    │ cpu      │ mem      │ user     │ watching │
+└────┴───────────┴─────────────┴─────────┴─────────┴──────────┴────────┴──────┴───────────┴──────────┴──────────┴──────────┴──────────┘

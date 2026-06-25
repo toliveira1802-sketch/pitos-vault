@@ -1,0 +1,228 @@
+diff --git a/gateway/src/index.ts b/gateway/src/index.ts
+index 84276bb..86f3b8b 100644
+--- a/gateway/src/index.ts
++++ b/gateway/src/index.ts
+@@ -46,6 +46,7 @@ import { emitAnnaEscalated } from "./services/realtime.js";
+ import { startAnnaInboxWorker } from "./workers/anna-inbox.worker.js";
+ import metricsRoutes from "./routes/metrics.routes.js";
+ import adminAnnaRoutes from "./routes/admin-anna.routes.js";
++import annaDraftsRoutes from "./routes/anna-drafts.routes.js";
+ import { metricsSink } from "./observability/metrics.js";
+ import {
+   createInboxQueue,
+@@ -358,6 +359,7 @@ app.use("/api/kimi", authMiddleware, strictLimiter, kimiRoutes);
+ app.use("/api/leads", authMiddleware, leadsRoutes);
+ app.use("/api/parliament", authMiddleware, parliamentRoutes);
+ app.use("/api/admin/anna", authMiddleware, adminAnnaRoutes);
++app.use("/api/anna/drafts", authMiddleware, annaDraftsRoutes);
+ // Parts Recognition (Odin). Identify + inventory + alerts. Strict limiter on
+ // the LLM-bound endpoints to keep Vision/OCR spend bounded.
+ app.use("/api/parts/upload", authMiddleware, strictLimiter);
+diff --git a/gateway/src/routes/meta-webhook.routes.ts b/gateway/src/routes/meta-webhook.routes.ts
+index d20e57d..b53e390 100644
+--- a/gateway/src/routes/meta-webhook.routes.ts
++++ b/gateway/src/routes/meta-webhook.routes.ts
+@@ -3,7 +3,12 @@ import { callPython } from "../services/pythonBridge.js";
+ import * as meta from "../services/meta-whatsapp.service.js";
+ import * as metaStore from "../services/meta-messages.service.js";
+ import * as metaMedia from "../services/meta-media.service.js";
+-import { emitMessage, emitStatus, emitTyping } from "../services/realtime.js";
++import {
++  emitMessage,
++  emitStatus,
++  emitTyping,
++  emitAnnaDraftNew,
++} from "../services/realtime.js";
+ import { logger } from "../services/logger.js";
+ import { appendToDaily } from "../services/dailyNote.js";
+ import {
+@@ -11,6 +16,8 @@ import {
+   resolveBrandFromPhoneNumberId,
+   type MetaBrandId,
+ } from "../config/meta-brands.js";
++import { shouldGoToDraft } from "../services/anna-config.service.js";
++import { createDraft } from "../services/anna-drafts.service.js";
+ 
+ /**
+  * Meta WhatsApp Webhook Router
+@@ -254,48 +261,99 @@ async function handleEvent(
+         const replyText = (typedResult.message as string) || "";
+ 
+         if (replyText) {
+-          // Reply MUST go out from the same brand that received it.
+-          const sendResult = await meta.sendTextMessage(
+-            msg.from,
+-            replyText,
+-            brandId,
+-          );
+-          const sentId =
+-            (sendResult.messages as Array<{ id: string }>)?.[0]?.id ||
+-            `local-${Date.now()}`;
+-
+-          await metaStore.insertOutbound({
+-            metaMessageId: sentId,
+-            conversationId,
+-            phone: msg.from,
+-            phoneNumberId: msg.phoneNumberId,
+-            msgType: "text",
+-            text: replyText,
+-            agent: "Ana",
+-          });
++          // Shadow / Copilot mode gate — if the brand is in shadow (or copilot
++          // for sensitive intents), Anna's reply is queued as a draft and
++          // chairman approves it before it reaches the customer. See
++          // services/anna-config.service.ts and migration anna_drafts.
++          const intent = (typedResult.intent as string | undefined) ?? null;
++          const goToDraft = await shouldGoToDraft(brandId, intent);
++
++          if (goToDraft) {
++            // conversationId may be null when ai_conversations row not yet
++            // created — fall back to client phone as stable identifier.
++            const draftConversationId = conversationId ?? msg.from;
++
++            const draft = await createDraft({
++              brandId,
++              conversationId: draftConversationId,
++              inboundMessageId: msg.messageId,
++              clientPhone: msg.from,
++              clientName: msg.pushName ?? null,
++              annaTextOriginal: replyText,
++              annaIntent: intent,
++              annaSignals:
++                (typedResult.signals as Record<string, unknown> | undefined) ?? null,
++              annaModel: (typedResult.model as string | undefined) ?? null,
++              annaTokensIn: (typedResult.tokens_input as number | undefined) ?? null,
++              annaTokensOut: (typedResult.tokens_output as number | undefined) ?? null,
++            });
+ 
+-          emitMessage({
+-            id: sentId,
+-            conversationId: msg.from,
+-            from: msg.phoneNumberId,
+-            to: msg.from,
+-            text: replyText,
+-            direction: "outbound",
+-            timestamp: new Date().toISOString(),
+-            status: "sent",
+-            agent: "Ana",
+-          });
++            emitAnnaDraftNew({
++              draftId: draft.id,
++              brandId,
++              conversationId: draftConversationId,
++              clientPhone: msg.from,
++              clientName: msg.pushName ?? null,
++              inboundText: msg.text,
++              annaText: replyText,
++              annaIntent: intent,
++              at: new Date().toISOString(),
++            });
++
++            logger.info("Anna draft queued (shadow/copilot)", {
++              draftId: draft.id,
++              brandId,
++              intent,
++            });
++
++            appendToDaily(
++              `**Anna [draft]** [${brandId}] — ${msg.pushName || msg.from}: "${msg.text.substring(0, 60)}" → aguardando aprovação`,
++              "Leads & Conversas",
++            );
++          } else {
++            // Autonomous: reply MUST go out from the same brand that received it.
++            const sendResult = await meta.sendTextMessage(
++              msg.from,
++              replyText,
++              brandId,
++            );
++            const sentId =
++              (sendResult.messages as Array<{ id: string }>)?.[0]?.id ||
++              `local-${Date.now()}`;
++
++            await metaStore.insertOutbound({
++              metaMessageId: sentId,
++              conversationId,
++              phone: msg.from,
++              phoneNumberId: msg.phoneNumberId,
++              msgType: "text",
++              text: replyText,
++              agent: "Ana",
++            });
++
++            emitMessage({
++              id: sentId,
++              conversationId: msg.from,
++              from: msg.phoneNumberId,
++              to: msg.from,
++              text: replyText,
++              direction: "outbound",
++              timestamp: new Date().toISOString(),
++              status: "sent",
++              agent: "Ana",
++            });
+ 
+-          const classification = typedResult.classification as
+-            | Record<string, string>
+-            | undefined;
+-          const classLabel = classification?.label
+-            ? ` [${classification.label}]`
+-            : "";
+-          appendToDaily(
+-            `**Ana** [${brandId}] — ${msg.pushName || msg.from}: "${msg.text.substring(0, 60)}"${classLabel}`,
+-            "Leads & Conversas",
+-          );
++            const classification = typedResult.classification as
++              | Record<string, string>
++              | undefined;
++            const classLabel = classification?.label
++              ? ` [${classification.label}]`
++              : "";
++            appendToDaily(
++              `**Ana** [${brandId}] — ${msg.pushName || msg.from}: "${msg.text.substring(0, 60)}"${classLabel}`,
++              "Leads & Conversas",
++            );
++          }
+         }
+ 
+         await meta.logToSupabase(
+diff --git a/gateway/src/services/realtime.ts b/gateway/src/services/realtime.ts
+index 10a8dbe..d28dc79 100644
+--- a/gateway/src/services/realtime.ts
++++ b/gateway/src/services/realtime.ts
+@@ -160,3 +160,36 @@ export function emitAnnaEscalated(ev: AnnaEscalatedEvent): void {
+   if (!io) return;
+   io.to("admin").emit("anna:escalated", ev);
+ }
++
++// ---------- Anna shadow-mode draft events ----------
++
++export interface AnnaDraftEvent {
++  draftId: string;
++  brandId: string;
++  conversationId?: string;
++  clientPhone: string;
++  clientName?: string | null;
++  inboundText?: string;
++  annaText?: string;
++  annaIntent?: string | null;
++  at: string;
++}
++
++/**
++ * Notify chairman that Anna produced a draft awaiting review.
++ * Dashboard component AnnaDraftQueue subscribes via the `admin` room.
++ */
++export function emitAnnaDraftNew(ev: AnnaDraftEvent): void {
++  if (!io) return;
++  io.to("admin").emit("anna:draft:new", ev);
++}
++
++export function emitAnnaDraftSent(ev: { draftId: string; brandId: string; sentMessageId: string; at: string }): void {
++  if (!io) return;
++  io.to("admin").emit("anna:draft:sent", ev);
++}
++
++export function emitAnnaDraftRejected(ev: { draftId: string; brandId: string; reason: string | null; at: string }): void {
++  if (!io) return;
++  io.to("admin").emit("anna:draft:rejected", ev);
++}

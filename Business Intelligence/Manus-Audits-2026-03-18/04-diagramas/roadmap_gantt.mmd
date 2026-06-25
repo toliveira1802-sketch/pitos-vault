@@ -1,0 +1,43 @@
+gantt
+    title Roadmap de Criação — Doctor Auto Prime & Sophia Hub
+    dateFormat YYYY-MM-DD
+    axisFormat %b %Y
+
+    section FASE 0 — Blindagem
+    Segurança de Webhooks (HMAC)           :f0a, 2026-03-25, 5d
+    Limite de iterações no loop agêntico    :f0b, 2026-03-25, 3d
+    Rate limiting e monitoramento           :f0c, after f0b, 4d
+    Testes automatizados (Ana + Crons)      :f0d, after f0a, 7d
+
+    section FASE 1 — Fundação SaaS
+    Modelagem multi-tenant no Supabase      :f1a, 2026-04-07, 10d
+    Tabela de configuração por oficina      :f1b, after f1a, 5d
+    Carregamento dinâmico de tokens Kommo   :f1c, after f1b, 7d
+    Isolamento de dados (RLS Supabase)      :f1d, after f1b, 7d
+    Onboarding automatizado de oficina      :f1e, after f1c, 10d
+
+    section FASE 2 — Motor RAG
+    Ativar pgvector no Supabase             :f2a, 2026-05-05, 3d
+    Migrar RAG Engine para Node.js          :f2b, after f2a, 14d
+    Interface de upload de manuais          :f2c, after f2b, 7d
+    Conectar RAG às Tools da Ana            :f2d, after f2b, 7d
+    Testes de qualidade de respostas        :f2e, after f2d, 5d
+
+    section FASE 3 — Plataforma (12 Telas)
+    Dashboard da Oficina                    :f3a, 2026-06-02, 14d
+    Agenda Inteligente + Pátio Digital      :f3b, after f3a, 14d
+    Cadastro Cliente + Veículo + OS         :f3c, after f3a, 14d
+    Diagnóstico + Orçamento + Aprovação     :f3d, after f3b, 14d
+    Execução + Financeiro + Histórico       :f3e, after f3d, 14d
+    Área do Cliente (App Web)               :f3f, after f3e, 14d
+
+    section FASE 4 — Escala
+    Painel administrativo multi-oficina     :f4a, 2026-08-11, 14d
+    Sistema de billing (Stripe)             :f4b, after f4a, 10d
+    Marketing e onboarding self-service     :f4c, after f4b, 14d
+    Meta: 100 oficinas piloto               :milestone, after f4c, 0d
+
+    section FASE 5 — Marketplace
+    Marketplace de peças e fornecedores     :f5a, 2026-10-12, 21d
+    Serviços financeiros integrados         :f5b, after f5a, 14d
+    Meta: 10.000 oficinas                   :milestone, after f5b, 0d

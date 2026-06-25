@@ -1,0 +1,25 @@
+{
+  "project": "DOCTOR PRIME",
+  "project_id": "acuufrgoyjwzlyhopaus",
+  "snapshot_at": "2026-05-05",
+  "source": "SELECT tablename, indexname, indexdef FROM pg_indexes WHERE schemaname='public'",
+  "index_count": 144,
+  "summary_by_table": {
+    "anna_inbox": ["pkey", "external_event_id (unique)", "idx_brand (brand_id, status, received_at)", "idx_lead_status", "idx_pending (partial WHERE status='pending')"],
+    "anna_conversations": ["pkey", "idx_brand (brand_id, created_at DESC)", "idx_lead (kommo_lead_id, created_at DESC)"],
+    "crm_leads": ["pkey", "external_client_id (unique)", "kommo_lead_id (unique)", "idx_anna_status (partial)", "idx_classification", "idx_created DESC", "idx_kommo", "idx_lead_tier (partial)", "idx_scored_at_desc (partial)", "idx_tenant_brand"],
+    "crm_leads_externo": ["pkey", "idx_funnel", "idx_score DESC"],
+    "customer_profiles": ["pkey", "phone unique", "idx_funnel", "idx_interests gin", "idx_last_contact DESC", "idx_lead", "idx_pain_points gin", "idx_phone", "idx_segment_tags gin", "idx_vehicles gin"],
+    "enrichment_queue": ["pkey", "idx_phone", "idx_status_enqueued"],
+    "kommo_*": ["pkey", "kommo_chat_id unique", "kommo_message_id unique", "brand_id unique (channels)", "idx_brand_pipeline", "idx_last_message DESC", "idx_brand DESC", "idx_conversation DESC", "idx_pipeline (partial active)", "idx_source (partial active)"],
+    "meta_messages": ["pkey", "meta_message_id unique", "idx_conversation_created", "idx_phone_created", "idx_status_failed (partial)"],
+    "parliament_*": ["pkeys + composite (director_id, skill_id) on director_skills + status/opened_at indexes on topics + topic_clev on voices"],
+    "parts/parts_*": ["catalog code unique, gin not used", "btree per part_id+observed_at DESC", "owner+updated_at DESC for inventory"],
+    "pecas_encontradas": ["pkey", "codigo_peca unique", "idx_tipo gin pt-BR tsvector"],
+    "sofia_actions": ["pkey", "agent_name", "created_at", "action_type"],
+    "webhook_logs": ["pkey", "created_at DESC", "source"],
+    "ordens_servico": ["pkey \"06_OS_pkey\"", "idx_mecanico_id (partial)"]
+  },
+  "extensions_inferred": ["pgvector (halfvec/sparsevec/vector functions seen in routines)"],
+  "warning": "Legacy tables use uppercase quoted PK names (\"04_CLIENTS_pkey\", etc.) — schema reflection tools may need quoting."
+}

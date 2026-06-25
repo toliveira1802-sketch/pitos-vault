@@ -1,0 +1,43 @@
+graph TB
+    subgraph CANAIS["Canais de Entrada"]
+        WA["WhatsApp"]
+        IG["Instagram"]
+        SITE["Site / Landing Page"]
+        IND["Indicações"]
+    end
+
+    subgraph INTERNO["CRM INTERNO — Operação Ativa"]
+        ANA["ANA<br/>Agente Principal<br/>Atende · Qualifica · Agenda"]
+        FUN["Funil Ativo<br/>Negociação → Agendado<br/>→ Na Oficina → Pós-Venda"]
+        OS["Sistema de OS<br/>Diagnóstico · Orçamento<br/>Aprovação · Execução"]
+        DASH["Dashboard<br/>Agenda · Pátio · Financeiro"]
+    end
+
+    subgraph PONTE["O BOTE — IA Pescadora"]
+        BOTE["PESCADORA<br/>Cron: Seg e Qui 9h<br/>Analisa lago · Cruza campanhas<br/>Gera mensagem · Pesca lead"]
+    end
+
+    subgraph EXTERNO["CRM EXTERNO — Lago de Leads"]
+        LAGO["Lago de Leads<br/>Não fecharam · Antigos<br/>Campanhas · Indicações"]
+        CAMP["Campanhas de Ataque<br/>Revisão preventiva<br/>Sazonal · Reativação<br/>Upsell · Indicação"]
+        SCORE["Score de Lead<br/>Quente · Morno · Frio<br/>Atualizado a cada ciclo"]
+    end
+
+    WA --> ANA
+    IG --> ANA
+    SITE --> ANA
+    IND --> LAGO
+
+    ANA --> FUN
+    FUN --> OS
+    OS --> DASH
+
+    FUN -->|"Não fechou após X dias"| LAGO
+    LAGO --> SCORE
+    CAMP --> BOTE
+    SCORE --> BOTE
+    BOTE -->|"Lead esquentou"| ANA
+    BOTE -->|"Sem resposta"| SCORE
+
+    ANA -.->|"Passa contexto"| BOTE
+    BOTE -.->|"Passa contexto"| ANA

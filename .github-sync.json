@@ -1,0 +1,40 @@
+{
+  "version": 1,
+  "remote": "https://github.com/toliveira1802-sketch/pitos-vault.git",
+  "branch": "main",
+  "sync": {
+    "autoIntervalMin": 0,
+    "ignorePatterns": [
+      ".DS_Store",
+      ".trash/**",
+      ".obsidian/**"
+    ]
+  },
+  "ai": {
+    "enabled": true,
+    "silentMode": true,
+    "silentMinConfidence": 5,
+    "openaiModel": "gpt-5.5",
+    "geminiModel": "gemini-2.5-flash",
+    "claudeModel": "claude-sonnet-4-5",
+    "deepseekModel": "deepseek-chat",
+    "sendFilePaths": true,
+    "sendGitMetadata": true,
+    "sendSurroundingContext": true,
+    "excludePatterns": [
+      ".env",
+      ".env.*",
+      "secrets/**",
+      "*.private.md",
+      "private/**",
+      "**/credentials.*"
+    ]
+  },
+  "submodules": [
+    {
+      "path": "chapapiuro-memoria",
+      "remote": "https://github.com/toliveira1802-sketch/chapapiuro-memoria.git",
+      "branch": "main"
+    }
+  ]
+}

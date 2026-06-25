@@ -1,0 +1,42 @@
+{
+  "project": "DOCTOR PRIME",
+  "project_id": "acuufrgoyjwzlyhopaus",
+  "snapshot_at": "2026-05-05",
+  "schema": "public",
+  "total_columns": 678,
+  "note": "Full information_schema.columns dump for public schema. Paginated 4 batches of 200. Source: SELECT table_name, column_name, data_type, is_nullable, column_default FROM information_schema.columns WHERE table_schema='public' ORDER BY table_name, ordinal_position. See raw output in audit transcript: 2026-05-05 Phase 0 audit.",
+  "key_tables_observed": [
+    {"table": "crm_leads", "columns": 38, "highlights": "tenant_id default 'dap_prime', anna_status, lead_score, lead_tier, scored_at, kommo_lead_id, brand_id, vehicle_info jsonb, multiple temporal+scoring fields. Multi-tenant + Anna integration baked in."},
+    {"table": "crm_leads_externo", "columns": 16, "highlights": "Manus enrichment dataset; 17887 rows. funnel_stage default 'lead_novo', score+classification+source. Probably read-only canonical lead lake."},
+    {"table": "anna_inbox", "columns": 16, "highlights": "Job queue: status default 'pending', attempts, external_event_id UNIQUE, kommo_lead_id, kommo_message_id, brand_id+tenant_id. Has rpc_anna_inbox_claim_next() function for SKIP LOCKED dispatch."},
+    {"table": "anna_conversations", "columns": 16, "highlights": "AI turn log with status_gate, escalation_reason, signals jsonb, confidence numeric, model+tokens. brand_id+tenant_id."},
+    {"table": "kommo_messages", "columns": 13, "highlights": "Multi-tenant brand+pipeline routing. temperature, intent, classification_confidence."},
+    {"table": "kommo_conversations", "columns": 16, "highlights": "kommo_chat_id UNIQUE, last_temperature, last_intent."},
+    {"table": "kommo_channels", "columns": 12, "highlights": "Brand-to-Kommo mapping. brand_id UNIQUE, pipeline_id, prompt_file, rtbm_file, wa_number."},
+    {"table": "ordens_servico", "columns": 28, "highlights": "Workshop OS — empresa_id (multi-tenant via current_empresa_id() RLS function). final_cost, advance_payment, mecanico_id, consultor_id."},
+    {"table": "ordens_servico_itens", "columns": 11, "highlights": "OS line items with cost, complexity, status."},
+    {"table": "parliament_directors", "columns": 11, "highlights": "Sennin Protocol C-Level (13 dirs)"},
+    {"table": "parliament_topics + voices + syntheses + decisions + resolutions", "columns": "varies", "highlights": "Council deliberation chain — open/voice/synth/decide/archive. RAG integration via rag_collection."},
+    {"table": "parts + part_equivalents + compatible_vehicles + parts_price_records + parts_price_sources + parts_inventory + parts_price_alerts + parts_search_history", "columns": "varies", "highlights": "Odin Parts module — full parts intelligence. parts_inventory has user_id RLS. parts_price_sources is web-evidence backed pricing."},
+    {"table": "customer_profiles", "columns": 26, "highlights": "Enrichment output: pain_points, interests, segment_tags, decision_style, ltv_tier, funnel_stage, campaign_optout."},
+    {"table": "enrichment_queue", "columns": 9, "highlights": "Background job queue for customer_profiles enrichment."},
+    {"table": "meta_messages", "columns": 17, "highlights": "Meta WhatsApp Cloud API transport. meta_message_id UNIQUE, error_code/title, raw payload."},
+    {"table": "webhook_logs", "columns": 8, "highlights": "Generic webhook ingest log. 3979 rows."},
+    {"table": "sofia_actions", "columns": 8, "highlights": "Sofia agent action ledger. 239 rows. agent_name default 'sofia'."},
+    {"table": "ai_conversations + ai_messages + ai_agent_config + ai_api_keys", "columns": "varies", "highlights": "Generic AI conversation framework (predates Anna naming). ai_api_keys has encrypted_key + provider UNIQUE."},
+    {"table": "rag_documents", "columns": 12, "highlights": "RAG ingestion catalog. source_rag, collection_name, status."},
+    {"table": "colaboradores", "columns": 13, "highlights": "Staff users. password_hash + auth_user_id + nivel_acesso_id. THIS is where the bcrypt+session legacy auth lives. username UNIQUE."},
+    {"table": "companies", "columns": 9, "highlights": "Multi-tenant root. 1 row (DAP)."},
+    {"table": "campaign_leads", "columns": 21, "highlights": "Landing page leads with full UTM + gclid. Has create_campaign_lead() rpc and get_campaign_leads() function."},
+    {"table": "vehicles", "columns": 13, "highlights": "Client vehicles: placa, marca, modelo, versao, ano, vin, color."},
+    {"table": "clients", "columns": 16, "highlights": "Customer master: full_name, email, phone, cpf, tier, birthday, address."}
+  ],
+  "naming_convention_warnings": [
+    "Several PKs/indexes have legacy quoted numeric prefixes: \"00_companies_pkey\", \"01_colaboradores_pkey\", \"04_CLIENTS_pkey\", \"05_VEHICLES_pkey\", \"06_OS_pkey\", \"07_OS_ITENS_pkey\", \"08_OS_HISTORICO_pkey\", \"12_MECANICOS_pkey\", \"13_PENDENCIAS_pkey\", \"14_RECURSOS_pkey\", \"15_AGENDAMENTOS_pkey\", \"97_RECUSAS_pkey\". Reflect-tooling will choke on quoting. Plan to rename in Phase 2."
+  ],
+  "see_also": [
+    "DOCTOR_PRIME-rls-policies.json",
+    "DOCTOR_PRIME-indexes.json",
+    "DOCTOR_PRIME-functions.json"
+  ]
+}

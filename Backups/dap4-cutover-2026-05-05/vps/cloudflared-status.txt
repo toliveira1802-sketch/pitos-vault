@@ -1,0 +1,21 @@
+● cloudflared.service - Cloudflare Tunnel (DAP4)
+     Loaded: loaded (/etc/systemd/system/cloudflared.service; enabled; preset: enabled)
+     Active: active (running) since Mon 2026-05-04 15:15:18 UTC; 23h ago
+ Invocation: 0590af5cd3a64918af2f3a3ca48d3e0f
+   Main PID: 152731 (cloudflared)
+      Tasks: 14 (limit: 38428)
+     Memory: 17.3M (peak: 20.9M)
+        CPU: 10min 11.836s
+     CGroup: /system.slice/cloudflared.service
+             └─152731 /usr/bin/cloudflared --no-autoupdate tunnel run --token eyJhIjoiNmRmNjg0MmM1NDdjOGIzZjQyMGUxNDc4OWY1MDA1MDEiLCJ0IjoiZGYwODJiMGQtYWEwYi00ZGQ4LTgyNzQtYzVmMmVkNjFlNTYxIiwicyI6IllXSmlZelkwTWpJdE5USmxOUzAwT0RBd0xXSTNPR1F0WlRBelpEWXdaRGRpWkdVeE5XVXdNalpoTUdZdFlUZG1OUzAwT1dJNUxUaG1ZMkl0TVRWak0yVTFaVEUyTXpndyJ9
+
+May 04 15:15:18 srv1303948 cloudflared[152731]: 2026-05-04T15:15:18Z INF Registered tunnel connection connIndex=0 connection=0ec55d98-c667-4f28-8996-0e5b55923beb event=0 ip=198.41.200.63 location=gru19 protocol=quic
+May 04 15:15:18 srv1303948 systemd[1]: Started cloudflared.service - Cloudflare Tunnel (DAP4).
+May 04 15:15:18 srv1303948 cloudflared[152731]: 2026-05-04T15:15:18Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=1 event=0 ip=198.41.192.167
+May 04 15:15:18 srv1303948 cloudflared[152731]: 2026-05-04T15:15:18Z INF Updated to new configuration config="{\"ingress\":[{\"hostname\":\"webhook.doctorautoprime40.com\",\"service\":\"http://localhost:80\"},{\"hostname\":\"app.doctorautoprime40.com\",\"service\":\"http://localhost:80\"},{\"hostname\":\"dap.doctorautoprime40.com\",\"service\":\"http://localhost:80\"},{\"hostname\":\"portal.doctorautoprime40.com\",\"service\":\"http://localhost:80\"},{\"hostname\":\"aios.doctorautoprime40.com\",\"service\":\"http://localhost:80\"},{\"service\":\"http_status:404\"}],\"warp-routing\":{\"enabled\":false}}" version=6
+May 04 15:15:18 srv1303948 cloudflared[152731]: 2026-05-04T15:15:18Z INF Registered tunnel connection connIndex=1 connection=25024a5a-2504-4f12-8144-2aeb10f93855 event=0 ip=198.41.192.167 location=gru13 protocol=quic
+May 04 15:15:19 srv1303948 cloudflared[152731]: 2026-05-04T15:15:19Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=2 event=0 ip=198.41.200.33
+May 04 15:15:19 srv1303948 cloudflared[152731]: 2026-05-04T15:15:19Z INF Registered tunnel connection connIndex=2 connection=067a05e1-d6d6-491f-9e3b-647db98818a3 event=0 ip=198.41.200.33 location=gru02 protocol=quic
+May 04 15:15:20 srv1303948 cloudflared[152731]: 2026-05-04T15:15:20Z INF Tunnel connection curve preferences: [X25519MLKEM768 CurveP256] connIndex=3 event=0 ip=198.41.192.67
+May 04 15:15:20 srv1303948 cloudflared[152731]: 2026-05-04T15:15:20Z INF Registered tunnel connection connIndex=3 connection=0408bbb1-a7af-4289-8361-14640ddbb984 event=0 ip=198.41.192.67 location=gru11 protocol=quic
+May 05 13:13:19 srv1303948 cloudflared[152731]: 2026-05-05T13:13:19Z INF Updated to new configuration config="{\"ingress\":[{\"hostname\":\"webhook.doctorautoprime40.com\",\"service\":\"http://localhost:80\"},{\"hostname\":\"app.doctorautoprime40.com\",\"service\":\"http://localhost:80\"},{\"hostname\":\"dap.doctorautoprime40.com\",\"service\":\"http://localhost:80\"},{\"hostname\":\"portal.doctorautoprime40.com\",\"service\":\"http://localhost:80\"},{\"hostname\":\"aios.doctorautoprime40.com\",\"service\":\"http://localhost:80\"},{\"hostname\":\"operacao.doctorautoprime40.com\",\"originRequest\":{},\"service\":\"http://localhost:5001\"},{\"service\":\"http_status:404\"}],\"warp-routing\":{\"enabled\":false}}" version=7

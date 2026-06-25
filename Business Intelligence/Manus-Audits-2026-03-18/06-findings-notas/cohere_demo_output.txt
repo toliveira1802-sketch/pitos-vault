@@ -1,0 +1,184 @@
+
+################################################################################
+#                      COHERE API - DEMONSTRAÇÃO COMPLETA                      #
+#                         Doctor Auto Prime Tech Team                          #
+#                                                                              #
+#                          Data: 2026-03-18 14:45:20                           #
+#                             SDK Version: 5.20.7                              #
+################################################################################
+
+
+================================================================================
+  TESTE 1: CHAT - Geração de Texto Básica
+================================================================================
+  Modelo: command-a-03-2025
+  Prompt: Explicar o que é remap automotivo em 3 frases
+------------------------------------------------------------
+
+  Resposta:
+  O remap automotivo, ou remapeamento de ECU (Unidade de Controle Eletrônico), é um processo de otimização do software que controla o motor do veículo. Envolve a modificação dos parâmetros de desempenho da ECU para melhorar a potência, torque e, em alguns casos, a eficiência de combustível. Essa técnica ajusta a curva de desempenho do motor, alterando variáveis como tempo de injeção, pressão do turbo e avanço de ignição, resultando em um aumento de performance.
+
+  Tokens de entrada: 569.0
+  Tokens de saída: 105.0
+  ✅ Chat Básico: OK (6644ms)
+
+================================================================================
+  TESTE 2: CHAT - Conversação Multi-Turn
+================================================================================
+  Simulando conversa com contexto de oficina automotiva
+------------------------------------------------------------
+
+  [Turno 1 - Assistente]:
+  Na Doctor Auto Prime, oferecemos uma gama completa de serviços especializados para o **Volkswagen Golf GTI**, focados em manutenção preventiva, reparos técnicos e otimização de desempenho. Abaixo estão os principais serviços:
+
+### **1. Manutenção Preventiva e Programada**  
+- **Troca de óleo e filtr...
+
+  [Turno 2 - Assistente]:
+  O **Stage 1** para um **Volkswagen Golf GTI** na Doctor Auto Prime é um processo que envolve a reprogramação da ECU (Unidade de Controle do Motor) para otimizar o desempenho, geralmente aumentando a potência e o torque sem modificar componentes físicos do motor. O tempo total para a realização de um...
+
+  ✅ Chat Multi-Turn: OK (14618ms)
+
+================================================================================
+  TESTE 3: EMBEDDINGS - Vetores Semânticos
+================================================================================
+  Modelo: embed-multilingual-v3.0
+  Caso de uso: Busca semântica de serviços automotivos
+------------------------------------------------------------
+
+  Textos processados: 6
+  Dimensões do vetor: 1024
+  Primeiros 5 valores do embedding #1: [0.027496338, -0.018310547, -0.005493164, 0.015945435, -0.0063323975]
+
+  Matriz de Similaridade (top pares):
+    0.8021 | 'Troca de óleo e filtros do motor...' <-> 'Stage 2 com upgrade de turbo e intercool...'
+    0.7805 | 'Instalação de downpipe e escape esportiv...' <-> 'Alinhamento e balanceamento de rodas...'
+    0.7775 | 'Remapeamento de ECU para aumento de potê...' <-> 'Stage 2 com upgrade de turbo e intercool...'
+    0.7765 | 'Troca de óleo e filtros do motor...' <-> 'Alinhamento e balanceamento de rodas...'
+    0.7609 | 'Diagnóstico eletrônico com scanner OBD2...' <-> 'Stage 2 com upgrade de turbo e intercool...'
+  ✅ Embeddings: OK (116ms)
+
+================================================================================
+  TESTE 4: RERANK - Re-Ranqueamento de Documentos
+================================================================================
+  Modelo: rerank-v3.5
+  Caso de uso: Buscar o serviço mais relevante para uma consulta
+------------------------------------------------------------
+
+  Query: 'Quero aumentar a potência do meu carro'
+
+  Ranking de Relevância (top 5):
+    #1 | Score: 0.5346 | 'Nosso remapeamento de ECU Stage 1 pode aumentar até 30% da potência or...'
+    #2 | Score: 0.2601 | 'Instalação de kit turbo completo com intercooler e downpipe para ganho...'
+    #3 | Score: 0.0735 | 'Stage 2 performance: remap + downpipe + intake + intercooler upgrade....'
+    #4 | Score: 0.0639 | 'Upgrade de suspensão esportiva com molas rebaixadas e amortecedores re...'
+    #5 | Score: 0.0530 | 'Realizamos troca de óleo sintético com filtro de alta performance....'
+  ✅ Rerank: OK (94ms)
+
+================================================================================
+  TESTE 5: TOKENIZE / DETOKENIZE
+================================================================================
+  Modelo: command-a-03-2025
+------------------------------------------------------------
+
+  Texto original: 'A Doctor Auto Prime é especialista em remapeamento de ECU para Volkswagen e Audi.'
+  Total de tokens: 18
+  Token IDs (primeiros 10): [40, 18658, 20373, 12832, 2301, 87880, 2125, 1758, 2812, 1832]
+  Token strings (primeiros 10): []
+  Texto reconstruído: 'A Doctor Auto Prime é especialista em remapeamento de ECU para Volkswagen e Audi.'
+  Match: SIM
+  ✅ Tokenize/Detokenize: OK (1328ms)
+
+================================================================================
+  TESTE 6: CHAT - Saída Estruturada (JSON)
+================================================================================
+  Modelo: command-a-03-2025
+  Caso de uso: Extrair dados estruturados de um lead
+------------------------------------------------------------
+
+  JSON extraído:
+  {
+    "nome": "Carlos Silva",
+    "veiculo": "Golf GTI MK7",
+    "ano": "2019",
+    "servico": "Stage 1 completo",
+    "telefone": "(11) 98765-4321",
+    "email": "carlos@email.com",
+    "data_preferida": "próxima segunda-feira"
+}
+  ✅ Structured Output (JSON): OK (5620ms)
+
+================================================================================
+  TESTE 7: LISTAR MODELOS DISPONÍVEIS
+================================================================================
+------------------------------------------------------------
+
+  Total de modelos disponíveis: 20
+
+  Nome                                     Endpoints                     
+  ---------------------------------------- ------------------------------
+  embed-english-light-v3.0                 embed                         
+  command-a-vision-07-2025                 chat                          
+  embed-multilingual-v2.0                  embed                         
+  rerank-v4.0-fast                         rerank                        
+  rerank-multilingual-v3.0                 rerank                        
+  c4ai-aya-vision-8b                       chat                          
+  tiny-aya-fire                            generate, chat                
+  command-a-reasoning-08-2025              chat                          
+  embed-multilingual-light-v3.0-image      embed_image                   
+  embed-english-light-v3.0-image           embed_image                   
+  embed-english-v3.0-image                 embed_image                   
+  c4ai-aya-expanse-8b                      generate, chat                
+  command-r-08-2024                        generate, chat, summarize     
+  tiny-aya-water                           generate, chat                
+  command-r7b-arabic-02-2025               generate, chat                
+  ... e mais 5 modelos
+  ✅ Listar Modelos: OK (63ms)
+
+================================================================================
+  TESTE 8: PIPELINE COMPLETO - Busca Semântica (Embed + Rerank)
+================================================================================
+  Caso de uso: CRM da oficina - buscar serviço ideal para o cliente
+------------------------------------------------------------
+
+  Query: 'Quero mais potência no meu Golf GTI sem gastar muito'
+
+  Etapa 1 - Resultados por Embedding (cosine similarity):
+    Score: 0.5979 | Stage 2 Performance: Remap + downpipe + intake de alta vazão. Ganho de...
+    Score: 0.5494 | Stage 1 ECU Remap: Aumento de 20-30% de potência via software, sem mod...
+    Score: 0.5268 | Freios Performance: Upgrade para discos ventilados, pastilhas cerâmica...
+    Score: 0.5022 | Intake de Alta Vazão: Filtro de ar esportivo com duto de admissão otim...
+    Score: 0.4999 | Escape Esportivo: Downpipe catless + catback em inox 304. Som esportiv...
+
+  Etapa 2 - Resultados após Rerank (top 3):
+    #1 | Relevance: 0.3535 | Stage 1 ECU Remap: Aumento de 20-30% de potência via software, sem mod...
+    #2 | Relevance: 0.1582 | Stage 2 Performance: Remap + downpipe + intake de alta vazão. Ganho de...
+    #3 | Relevance: 0.0855 | Freios Performance: Upgrade para discos ventilados, pastilhas cerâmica...
+  ✅ Pipeline Semântico: OK (300ms)
+
+================================================================================
+  RESUMO DOS TESTES
+================================================================================
+
+  Total de testes: 8
+  Aprovados: 8
+  Falhas: 0
+  Taxa de sucesso: 100.0%
+
+  Teste                          Status     Latência     Detalhes
+  ------------------------------ ---------- ------------ ----------------------------------------
+  Chat Básico                    OK             6644ms   O remap automotivo, ou remapeamento de E
+  Chat Multi-Turn                OK            14618ms   2 turnos completados
+  Embeddings                     OK              116ms   6 textos, 1024 dims
+  Rerank                         OK               94ms   Top 5 de 8 docs
+  Tokenize/Detokenize            OK             1328ms   18 tokens
+  Structured Output (JSON)       OK             5620ms   {
+  "nome": "Carlos Silva",
+  "veiculo":
+  Listar Modelos                 OK               62ms   20 modelos encontrados
+  Pipeline Semântico             OK              300ms   Embed + Rerank pipeline completo
+
+  Log salvo em: /home/ubuntu/cohere_test_results.json
+
+================================================================================
+

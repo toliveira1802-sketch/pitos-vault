@@ -1,0 +1,44 @@
+gantt
+    title Roadmap de Criação — Doctor Auto Prime (CRM Duplo)
+    dateFormat YYYY-MM-DD
+    axisFormat %b %Y
+
+    section SPRINT 0 — Blindagem
+    Segurança webhook + max_steps          :s0a, 2026-03-25, 3d
+    Limpar credenciais + descontinuar Python:s0b, 2026-03-25, 2d
+    Testes básicos Ana + Crons             :s0c, after s0a, 4d
+
+    section SPRINT 1 — CRM Interno
+    Mapear campos Kommo definitivos        :s1a, 2026-04-02, 3d
+    Modelar tabelas CRM interno (Supabase) :s1b, 2026-04-02, 5d
+    Funil ativo: Negociação a Pós-Venda    :s1c, after s1b, 7d
+    Ajustar Ana para operar no CRM interno :s1d, after s1c, 5d
+    Ativar pgvector + migrar RAG           :s1e, after s1b, 12d
+    Nova tool: consultar_base_tecnica      :s1f, after s1e, 5d
+
+    section SPRINT 2 — CRM Externo + Pescadora
+    Modelar Lago de Leads (Supabase)       :s2a, 2026-05-04, 5d
+    Sistema de scoring de leads            :s2b, after s2a, 5d
+    Regra: lead não fechou vai pro Lago    :s2c, after s2a, 3d
+    Criar IA Pescadora (cron Seg/Qui 9h)   :s2d, after s2b, 10d
+    Motor de campanhas de ataque           :s2e, after s2d, 7d
+    Ponte IA-IA: Pescadora passa contexto  :s2f, after s2d, 5d
+    Testes do ciclo completo Interno-Externo:s2g, after s2f, 5d
+
+    section SPRINT 3 — Gestão da Oficina
+    Dashboard executivo (web)              :s3a, 2026-06-15, 10d
+    Agenda inteligente + Pátio Digital     :s3b, after s3a, 10d
+    Cadastro clientes + veículos + OS      :s3c, after s3a, 10d
+    Diagnóstico + Orçamento visual         :s3d, after s3b, 10d
+
+    section SPRINT 4 — Experiência do Cliente
+    Aprovação digital de orçamento         :s4a, 2026-07-27, 7d
+    Acompanhamento de serviço              :s4b, after s4a, 7d
+    Notificações WhatsApp automáticas      :s4c, after s4a, 5d
+    Ritual de entrega digital              :s4d, after s4b, 5d
+
+    section SPRINT 5 — Financeiro e Go-Live
+    Módulo financeiro simplificado         :s5a, 2026-08-17, 10d
+    Histórico completo do cliente          :s5b, after s5a, 5d
+    Testes integrados end-to-end           :s5c, after s5b, 5d
+    Go-Live sistema completo               :milestone, after s5c, 0d

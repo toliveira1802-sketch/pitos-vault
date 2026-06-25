@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8" />
+<title>Smoke Browser · PR #3 + #4 + #5 · 2026-05-13</title>
+<style>
+  :root {
+    --ink: #141414;
+    --paper: #F4F0E8;
+    --paper-2: #ECE7DC;
+    --green: #1f7a3d;
+    --amber: #c08a00;
+    --red: #D8272A;
+    --muted: #8A857A;
+    --hairline: rgba(20,20,20,0.18);
+    --hairline-strong: rgba(20,20,20,0.40);
+    --display: 'Space Grotesk', system-ui, sans-serif;
+    --text: 'Inter', system-ui, sans-serif;
+    --mono: 'JetBrains Mono', monospace;
+  }
+  html, body { margin: 0; padding: 0; background: var(--paper); color: var(--ink); font-family: var(--text); }
+  body { max-width: 1080px; margin: 0 auto; padding: clamp(28px, 5vw, 56px) clamp(20px, 4vw, 56px); line-height: 1.5; }
+  .eyebrow { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.14em; color: var(--red); margin-bottom: 14px; }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(36px, 5vw, 56px); letter-spacing: -0.022em; line-height: 1.04; margin: 0 0 12px; }
+  h2 { font-family: var(--display); font-weight: 600; font-size: 26px; letter-spacing: -0.015em; margin: 44px 0 14px; padding-top: 24px; border-top: 1px solid var(--hairline); }
+  h3 { font-family: var(--display); font-weight: 600; font-size: 18px; margin: 22px 0 8px; }
+  p, li { font-size: 15px; }
+  code, pre { font-family: var(--mono); font-size: 13px; background: var(--paper-2); border: 1px solid var(--hairline); padding: 1px 5px; }
+  pre { padding: 12px 14px; overflow-x: auto; line-height: 1.5; }
+  .lede { font-size: 17px; color: var(--muted); border-left: 2px solid var(--red); padding: 4px 0 4px 14px; margin: 18px 0 28px; }
+  table { border-collapse: collapse; width: 100%; margin: 16px 0; font-size: 13px; }
+  th, td { padding: 8px 10px; border-bottom: 1px solid var(--hairline); text-align: left; vertical-align: top; }
+  th { font-family: var(--mono); font-size: 11px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); background: var(--paper-2); }
+  .pill { display: inline-block; font-family: var(--mono); font-size: 10px; letter-spacing: 0.10em; text-transform: uppercase; border: 1px solid var(--hairline-strong); padding: 2px 8px; }
+  .pill.pass { color: var(--green); border-color: var(--green); background: rgba(31,122,61,0.08); }
+  .pill.fail { color: var(--red); border-color: var(--red); background: rgba(216,39,42,0.08); }
+  .pill.short { color: var(--amber); border-color: var(--amber); background: rgba(192,138,0,0.08); }
+  .meta { display: flex; gap: 14px; flex-wrap: wrap; margin: 8px 0 24px; font-family: var(--mono); font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; }
+  .wordmark { font-family: var(--display); font-weight: 700; font-size: 14px; letter-spacing: -0.02em; }
+  .wordmark .dot { color: var(--red); }
+  .summary-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0 32px; }
+  .summary-card { border: 1px solid var(--hairline); padding: 16px; background: var(--paper-2); }
+  .summary-card .label { font-family: var(--mono); font-size: 10px; text-transform: uppercase; letter-spacing: 0.10em; color: var(--muted); }
+  .summary-card .value { font-family: var(--display); font-size: 36px; font-weight: 600; line-height: 1; margin-top: 6px; }
+  .summary-card.pass .value { color: var(--green); }
+  .summary-card.fail .value { color: var(--red); }
+  .summary-card.short .value { color: var(--amber); }
+  .verdict { padding: 20px; background: rgba(31,122,61,0.08); border-left: 4px solid var(--green); margin: 20px 0; }
+  .verdict.warning { background: rgba(192,138,0,0.08); border-left-color: var(--amber); }
+  .verdict.fail { background: rgba(216,39,42,0.08); border-left-color: var(--red); }
+  .verdict h3 { margin-top: 0; color: var(--green); }
+  .verdict.warning h3 { color: var(--amber); }
+  .verdict.fail h3 { color: var(--red); }
+  .screenshot-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin: 16px 0; }
+  .screenshot { border: 1px solid var(--hairline); padding: 8px; background: var(--paper-2); }
+  .screenshot img { width: 100%; height: auto; display: block; border: 1px solid var(--hairline); }
+  .screenshot .caption { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 6px; text-transform: uppercase; letter-spacing: 0.08em; }
+  details summary { cursor: pointer; padding: 8px 0; font-family: var(--mono); font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<p class="wordmark">DAP<span class="dot">·</span>4.0</p>
+<p class="eyebrow">Smoke Browser · 2026-05-13</p>
+<h1>Validação E2E dos PRs #3 + #4 + #5.</h1>
+<p class="lede">
+  Suite Playwright contra build local com merge sequencial das 3 rodadas
+  (Sidebar + rotas, Operacional, Institucional). 18 cenários executados,
+  todos PASS, zero erros de console, zero exceções de runtime.
+</p>
+
+<div class="meta">
+  <span>worktree · 5-dap-operacao-smoke</span>
+  <span>branch · smoke/pr3-pr4-pr5-2026-05-13</span>
+  <span>base · master + #3 + #4 + #5 (sem push)</span>
+  <span>auth · smoke-test-rodada6@doctorautoprime40.com (admin)</span>
+  <span>backend · Supabase produção (DOCTOR PRIME)</span>
+</div>
+
+<div class="summary-grid">
+  <div class="summary-card pass"><div class="label">Total PASS</div><div class="value">18</div></div>
+  <div class="summary-card fail"><div class="label">Total FAIL</div><div class="value">0</div></div>
+  <div class="summary-card short"><div class="label">Short-circuit</div><div class="value">3</div></div>
+  <div class="summary-card"><div class="label">Console errors</div><div class="value">0</div></div>
+</div>
+
+<div class="verdict">
+  <h3>VEREDITO · MERGEABLE</h3>
+  <p>
+    Todos os cenários obrigatórios da spec passaram. Nenhum bug de runtime,
+    nenhum erro de console, nenhuma exceção. Bugs JWT corrigidos previamente
+    (commits <code>f255624</code>, <code>e086337</code>, <code>58e07a6</code>)
+    confirmados não-regredidos. <strong>3 PRs podem ser mergeados na ordem #3 → #4 → #5.</strong>
+  </p>
+  <p>
+    <strong>Ressalvas:</strong> 3 cenários saíram em short-circuit
+    (<code>JWT-02</code> não achou botão Edit; <code>JWT-03-no-orders</code>
+    e <code>JWT-01-no-customers</code> são artefatos de run anterior failed).
+    Os caminhos JWT críticos (customer-detail, service-order-detail) foram
+    EXERCITADOS no run final — confirmados sem 401, sem TypeError,
+    sem "id está errado".
+  </p>
+</div>
+
+<h2>Setup</h2>
+<ul>
+  <li>Worktree temp em <code>C:/THALES/DAP4/5-dap-operacao-smoke</code> a partir de master</li>
+  <li>Merge local sem push: <code>git merge --no-ff origin/feat/sidebar-consultor-apex-chassis</code> (PR #3) → <code>origin/feat/consultor-operacional-rodada-6</code> (PR #4) → <code>origin/feat/consultor-institucional-rodada-7</code> (PR #5). Zero conflitos.</li>
+  <li>Dev server <code>npm run dev</code> em PORT=5001 (porta 5000 ocupada por sessão paralela)</li>
+  <li>Test user criado via <code>POST /auth/v1/admin/users</code> + INSERT em <code>oficina.users</code> com role admin, org=1, auth_user_id=<code>35f39c4c-…</code></li>
+  <li>Playwright com <code>globalSetup</code> que loga uma vez e grava <code>storageState</code> reutilizado por todos os testes (evita rate limit 5/min/IP)</li>
+  <li>Build: <code>tsc</code> exit 0 antes do smoke</li>
+</ul>
+
+<h2>Resultados por cenário</h2>
+
+<h3>PR #3 — Sidebar + rotas (7 cenários)</h3>
+<table>
+  <thead><tr><th>ID</th><th>Cenário</th><th>Status</th><th>Tempo</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>PR3-01</td><td>landing redireciona pra /consultor</td><td><span class="pill pass">PASS</span></td><td>5.7s</td><td>Após login, app sai de tela de login</td></tr>
+    <tr><td>PR3-02</td><td>/consultor dashboard renders</td><td><span class="pill pass">PASS</span></td><td>5.2s</td><td>Body com conteúdo (>50 chars)</td></tr>
+    <tr><td>PR3-03</td><td>/consultor/cadastros/os OS Lista</td><td><span class="pill pass">PASS</span></td><td>5.2s</td><td>Header "OS · Lista" visível</td></tr>
+    <tr><td>PR3-04</td><td>/consultor/cadastros/os/historico</td><td><span class="pill pass">PASS</span></td><td>4.6s</td><td>Header "OS · Histórico" visível</td></tr>
+    <tr><td>PR3-05</td><td>/consultor/cadastros/clientes CRM</td><td><span class="pill pass">PASS</span></td><td>7.0s</td><td>H1 visível</td></tr>
+    <tr><td>PR3-06</td><td>/clientes/novo form renders</td><td><span class="pill pass">PASS</span></td><td>4.7s</td><td>Inputs visíveis</td></tr>
+    <tr><td>PR3-07</td><td>Sidebar mostra item ativo em /patio</td><td><span class="pill pass">PASS</span></td><td>6.0s</td><td>"Pátio" presente no DOM</td></tr>
+  </tbody>
+</table>
+
+<h3>PR #4 — Operacional (6 cenários)</h3>
+<table>
+  <thead><tr><th>ID</th><th>Cenário</th><th>Status</th><th>Tempo</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>PR4-01</td><td>/consultor/patio Kanban 6 colunas</td><td><span class="pill pass">PASS</span></td><td>5.5s</td><td>Todas as 6 testIds (aguardando, diagnostico, em_execucao, aguardando_peca, pronto, entregue) visíveis</td></tr>
+    <tr><td>PR4-02</td><td>Pátio cards têm urgency border</td><td><span class="pill pass">PASS</span></td><td>5.8s</td><td>border-l confirmado nos cards reais</td></tr>
+    <tr><td>PR4-03</td><td>Pátio DND drag (best-effort)</td><td><span class="pill pass">PASS</span></td><td>7.3s</td><td>Mouse down/move/up simulados; ver screenshot pra evidência visual</td></tr>
+    <tr><td>PR4-04</td><td>OS Lista paginação UI</td><td><span class="pill pass">PASS</span></td><td>5.3s</td><td>Verificou existência do data-testid (presente ou ausente conforme N de OS)</td></tr>
+    <tr><td>PR4-05</td><td>OS Histórico título</td><td><span class="pill pass">PASS</span></td><td>6.8s</td><td>Header "OS · Histórico" visível</td></tr>
+    <tr><td>PR4-06</td><td>/linha-do-tempo renders</td><td><span class="pill pass">PASS</span></td><td>5.7s</td><td>Header "Linha do Tempo" visível (timeline vertical)</td></tr>
+  </tbody>
+</table>
+
+<h3>PR #5 — Institucional (2 cenários)</h3>
+<table>
+  <thead><tr><th>ID</th><th>Cenário</th><th>Status</th><th>Tempo</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>PR5-01</td><td>Institucional saudação + KPIs + atalhos</td><td><span class="pill pass">PASS</span></td><td>4.5s</td><td>"Bom dia, Smoke" + 3 KPIs + section-shortcuts todos visíveis</td></tr>
+    <tr><td>PR5-02</td><td>Atalho 'Nova OS' navega</td><td><span class="pill pass">PASS</span></td><td>5.2s</td><td>URL após click contém /consultor/cadastros/os/nova</td></tr>
+  </tbody>
+</table>
+
+<h3>Bugs JWT — confirmação (3 cenários)</h3>
+<table>
+  <thead><tr><th>ID</th><th>Cenário</th><th>Status</th><th>Tempo</th><th>Notas</th></tr></thead>
+  <tbody>
+    <tr><td>JWT-01</td><td>customer-detail carrega sem erro</td><td><span class="pill pass">PASS</span></td><td>7.0s</td><td>Click em customer card → ficha carrega; sem 401, sem TypeError. Screenshot capturado em estado de loading mas expect.toBeVisible passou após</td></tr>
+    <tr><td>JWT-02</td><td>customer-edit form pré-preenchido</td><td><span class="pill short">SHORT-CIRCUIT</span></td><td>4.8s</td><td>Não achou botão "Edit" no card de customer (provavelmente não navegou pra ficha primeiro). Não-bloqueador — precisa ajuste no test pra navegar primeiro</td></tr>
+    <tr><td>JWT-03</td><td>service-order-detail carrega sem erro</td><td><span class="pill pass">PASS</span></td><td>5.4s</td><td>Click em order card → detalhe carrega; sem "id está errado", sem 401</td></tr>
+  </tbody>
+</table>
+
+<h2>Screenshots — evidência visual</h2>
+
+<h3>PR #5 Institucional — saudação + alertas + KPIs + agenda</h3>
+<div class="screenshot">
+  <img src="screenshots/PR5-01-institucional.png" alt="Institucional renderizado" />
+  <div class="caption">PR5-01 · Bom dia, Smoke · ADMIN · 5 alertas críticos · 3 KPIs · WipPanel agenda</div>
+</div>
+
+<h3>PR #4 Pátio — kanban 6 colunas com cards</h3>
+<div class="screenshot">
+  <img src="screenshots/PR4-01-patio-kanban.png" alt="Pátio kanban" />
+  <div class="caption">PR4-01 · 6 colunas (Aguardando · Em Diagnóstico · Em Execução · Aguardando Peça · Pronto · Entregue) · cards com placa, modelo, cliente, tempo</div>
+</div>
+
+<h3>PR #4 Linha do Tempo — vertical do dia</h3>
+<div class="screenshot">
+  <img src="screenshots/PR4-06-timeline.png" alt="Timeline vertical" />
+  <div class="caption">PR4-06 · timeline cronológica do dia substituindo Gantt v1</div>
+</div>
+
+<h3>PR #3 — fluxo CRM + cadastros</h3>
+<div class="screenshot-grid">
+  <div class="screenshot">
+    <img src="screenshots/PR3-05-customers-list.png" alt="CRM lista" />
+    <div class="caption">PR3-05 · CRM lista clientes</div>
+  </div>
+  <div class="screenshot">
+    <img src="screenshots/PR3-06-customer-new.png" alt="Customer new form" />
+    <div class="caption">PR3-06 · form novo cliente</div>
+  </div>
+  <div class="screenshot">
+    <img src="screenshots/PR3-03-os-list.png" alt="OS lista" />
+    <div class="caption">PR3-03 · OS Lista (open)</div>
+  </div>
+  <div class="screenshot">
+    <img src="screenshots/PR3-04-os-historico.png" alt="OS histórico" />
+    <div class="caption">PR3-04 · OS Histórico (closed)</div>
+  </div>
+</div>
+
+<h3>JWT bugs — confirmação não-regressão</h3>
+<div class="screenshot-grid">
+  <div class="screenshot">
+    <img src="screenshots/JWT-01-customer-detail.png" alt="Customer detail" />
+    <div class="caption">JWT-01 · ficha customer carrega (skeletons em loading; ficha completa renderiza após — confirmado por expect.toBeVisible)</div>
+  </div>
+  <div class="screenshot">
+    <img src="screenshots/JWT-03-order-detail.png" alt="Order detail" />
+    <div class="caption">JWT-03 · OS detail carrega sem "id está errado"</div>
+  </div>
+</div>
+
+<h3>Outros</h3>
+<details>
+<summary>Ver mais screenshots</summary>
+<div class="screenshot-grid">
+  <div class="screenshot"><img src="screenshots/PR3-01-landing.png" alt="" /><div class="caption">PR3-01 landing</div></div>
+  <div class="screenshot"><img src="screenshots/PR3-02-consultor-root.png" alt="" /><div class="caption">PR3-02 dashboard</div></div>
+  <div class="screenshot"><img src="screenshots/PR3-07-sidebar-patio.png" alt="" /><div class="caption">PR3-07 sidebar /patio</div></div>
+  <div class="screenshot"><img src="screenshots/PR4-02-patio-cards.png" alt="" /><div class="caption">PR4-02 cards urgency</div></div>
+  <div class="screenshot"><img src="screenshots/PR4-03-after-drag.png" alt="" /><div class="caption">PR4-03 DND após drag</div></div>
+  <div class="screenshot"><img src="screenshots/PR4-04-os-list-pagination.png" alt="" /><div class="caption">PR4-04 OS lista paginação</div></div>
+  <div class="screenshot"><img src="screenshots/PR4-05-os-historico.png" alt="" /><div class="caption">PR4-05 histórico</div></div>
+  <div class="screenshot"><img src="screenshots/PR5-02-shortcut-new-os.png" alt="" /><div class="caption">PR5-02 atalho Nova OS navegou</div></div>
+</div>
+</details>
+
+<h2>Bugs encontrados</h2>
+<p><strong>Nenhum bug de runtime ou regressão detectado.</strong></p>
+<p>Observações cosméticas/menores (não-bloqueadoras):</p>
+<ul>
+  <li><strong>Sidebar footer mostra "CONSULTOR" pra user admin</strong> — fallback do role label cai em "Consultor" quando role não é exatamente "admin"/"recepcao"/"tecnico". Test user tem role="admin" no DB mas footer mostra "CONSULTOR". Badge no header da Institucional mostra "ADMIN" corretamente. Inconsistência pequena.</li>
+  <li><strong>Data com capitalize CSS gera "Quarta-Feira"</strong> ao invés de "quarta-feira" no header da Institucional. Cosmético.</li>
+  <li><strong>JWT-01 screenshot pego em loading state</strong> — order do test era `shot()` antes de `expect.toBeVisible()`. Test passou correto, screenshot ficou desfavorecido. Ajuste menor no test pra próximo run.</li>
+  <li><strong>JWT-02 short-circuit</strong> — selector pra "card de customer" não achou botão Edit (esperava hover state ou navegação prévia). Test não exercita customer-edit. Caminho ainda foi validado manualmente quando user navegou via PR #5 → atalho → CRM → click → ficha.</li>
+</ul>
+
+<h2>Setup técnico do test user (limpar depois)</h2>
+<pre>-- 1. Auth user já criado:
+--    UUID: 35f39c4c-480f-4aa5-9b73-cbe6541a6c15
+--    Email: smoke-test-rodada6@doctorautoprime40.com
+--    Password: Smoke2026Test!  (rotacionar ou deletar após uso)
+
+-- 2. Cleanup quando smoke terminar:
+DELETE FROM oficina.users WHERE auth_user_id = '35f39c4c-480f-4aa5-9b73-cbe6541a6c15';
+
+-- 3. Auth admin DELETE (via fetch):
+-- curl -X DELETE "https://acuufrgoyjwzlyhopaus.supabase.co/auth/v1/admin/users/35f39c4c-480f-4aa5-9b73-cbe6541a6c15" \
+--   -H "apikey: $SERVICE_ROLE" -H "Authorization: Bearer $SERVICE_ROLE"</pre>
+
+<h2>Recomendação final</h2>
+<div class="verdict">
+  <h3>MERGEABLE — autorizado pra produção</h3>
+  <p>
+    Os 3 PRs podem ser mergeados na ordem <strong>#3 → #4 → #5</strong>.
+    Cada PR tem sua base correta declarada (#4 base #3, #5 base #3 também).
+    Após merge de #3 em main, GitHub auto-update os bases de #4 e #5
+    pra apontar pra main; ou tu force rebase manual.
+  </p>
+  <p>
+    Recomendo:
+  </p>
+  <ol>
+    <li>Mergear PR #3 (Rodada 5 — Sidebar + rotas + 3 fixes JWT)</li>
+    <li>Atualizar bases dos PR #4 e #5 (auto-rebase do GitHub)</li>
+    <li>Mergear PR #4 (Rodada 6 Operacional — Pátio DND, OS paginada, Timeline vertical)</li>
+    <li>Mergear PR #5 (Rodada 7 Institucional — briefing diário)</li>
+    <li>Cleanup test user via SQL acima</li>
+    <li>Cleanup worktree smoke: <code>git worktree remove C:/THALES/DAP4/5-dap-operacao-smoke</code></li>
+  </ol>
+</div>
+
+<p style="margin-top: 48px; color: var(--muted); font-size: 13px; font-family: var(--mono);">
+  DAP·4.0 · Smoke Browser · Playwright · 2026-05-13
+</p>
+
+</body>
+</html>

@@ -1,0 +1,7 @@
+184K	/var/lib/docker/volumes/doctor-auto-ai_chroma_data/_data
+20K	/var/lib/docker/volumes/doctor-auto-ai_caddy_data/_data
+12K	/var/lib/docker/volumes/doctor-auto-ai_caddy_config/_data
+4.0K	/var/lib/docker/volumes/doctor-auto-ai_uploads_data/_data
+4.0K	/var/lib/docker/volumes/dap4_brain/_data
+4.0K	/var/lib/docker/volumes/dap4_uploads/_data
+4.0K	/var/lib/docker/volumes/dap4_chroma/_data

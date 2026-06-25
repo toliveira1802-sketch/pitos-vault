@@ -1,0 +1,36 @@
+=== tables ===
+migrations
+embeddings_queue
+embeddings_queue_config
+collection_metadata
+segment_metadata
+tenants
+databases
+collections
+maintenance_log
+segments
+embeddings
+embedding_metadata
+max_seq_id
+embedding_fulltext_search
+embedding_fulltext_search_data
+embedding_fulltext_search_idx
+embedding_fulltext_search_content
+embedding_fulltext_search_docsize
+embedding_fulltext_search_config
+=== collections ===
+('05aa3aef-4c5e-4ab7-811e-8ce709b01104', 'study_car_manuals', None)
+('cdb9df8f-803a-468d-82fd-1ada6c73f0c7', 'study_industry_news', None)
+('e49354a8-1180-401e-b606-0d16fa1d2797', 'study_diagnostic_kb', None)
+('7a5df9d0-ad5a-463b-baf4-2820e2228364', 'study_business_insights', None)
+('f45135b5-2415-49b2-b570-1ae268ca1cf2', 'ops_client_support', None)
+('9fd88ad4-9db9-453a-ae31-81475594a338', 'ops_service_procedures', None)
+('e45d23ed-74b1-420c-9668-d703c3fda396', 'ops_pricing_guidelines', None)
+=== embeddings counts ===
+study_car_manuals: 0 embeddings
+study_industry_news: 0 embeddings
+study_diagnostic_kb: 0 embeddings
+study_business_insights: 0 embeddings
+ops_client_support: 0 embeddings
+ops_service_procedures: 0 embeddings
+ops_pricing_guidelines: 0 embeddings

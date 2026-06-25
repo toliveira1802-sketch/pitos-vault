@@ -1,0 +1,1 @@
+/var/lib/docker/volumes/doctor-auto-ai_chroma_data/_data

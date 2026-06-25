@@ -1,0 +1,100 @@
+f28063b fix(auth): implementa rota /reset-password (magic link de recovery)
+2a3c971 refactor(os): createOS nao chama mais registerStatusChange
+1045bc0 feat(patio): highlight pulse 3s via ?highlight=<osId>
+134ecc7 feat(nova-os): roteamento /consultor/os/nova + remove CreateOSDialog
+e6dcde4 feat(nova-os): NovaOSPage orquestra wizard + useBlocker + onSuccess
+4332e67 feat(nova-os): Step3Servico + Step4Confirmacao
+241b3ee feat(nova-os): Step2Veiculo + TransferenciaPlacaModal
+78e99f5 feat(nova-os): Step1Cliente + ClienteEncontradoCard
+ef764a0 feat(nova-os): WizardStepper component DAP DS v1.0
+617d247 feat(nova-os): useCreateNovaOS orquestra cliente -> veiculo -> OS
+aab6e16 feat(nova-os): getVeiculoByPlaca service + useVeiculoByPlaca hook
+9cb4f2b feat(nova-os): getClienteByCpf service + useClienteByCpf hook
+e2076bf feat(nova-os): zustand store com persist sessionStorage
+b187839 feat(nova-os): zod schemas, types e useDebounce helper
+2ad8ca4 feat(supabase): limpeza + triggers para criacao de OS (migration 08)
+8f593e4 docs(plan): plano detalhado fase a fase — Abrir OS wizard
+3218c8e docs(spec): design — Abrir OS wizard 4 etapas (portal-consultor)
+e93fcca fix(portal-familia): sempre sobrescrever Authorization no custom fetch
+1fea192 fix(portal-familia): manual token management — fix DEFINITIVO do lock bug
+6fb625c fix(portal-familia): downgrade supabase-js ^2.47.10 → 2.47.12 pinado
+da9c4d3 fix(portal-familia): manual setSession no bootstrap (bypass init travado)
+96c08d4 fix(portal-familia): remover getSession do bootstrap — só onAuthStateChange
+89cc8db fix(portal-familia): consolidar supabase clients pra eliminar lock contention
+9415c63 feat(portal-familia): Wave 2 complete — 3 pages novas + 3 pages com CRUD (oficina-pro port)
+f0ecfb6 feat(portal-familia): port OS detail + 10 cards do oficina-pro (Wave 2)
+053334b feat(portal-familia): foundation pra absorver oficina-pro — migration + services + workflow
+0940425 feat(portal-familia): wave 1 globalSearch real + service pattern + pendencias schema fix (#20)
+50cac41 feat(agents-security): backport PR #1 — CHROMA_OPTIONAL + verify_auth staging + prompt injection guard (#21)
+532da87 feat(wave1): indicadores reais via RPC get_indicadores_by_role (#19)
+ba8faa1 feat(portal-consultor): migração DS v1.0 — ondas 2+3 (list + detail pages) (#18)
+95b76b7 fix(infra): pass dap.* Host header in deploy.sh healthz smoke (#17)
+13538ad fix(infra): guard deploy.sh against broken portal build (#16)
+85133d2 feat(portal-consultor): migração visual DS v1.0 — shell + cards + CRM Caliente (#15)
+c05e999 fix(portal-familia): hardening AuthContext pra não travar Splash eterno (#14)
+f2def0c feat(infra): Caddy redirects dap.* to portal.* except /api + /socket.io
+98e4998 fix(infra): use cat+chmod instead of install heredoc in provision.sh
+8167f0e fix(portal-familia): resolve splash loop at /consultor via inner Suspense + chunk error boundary (#13)
+1766b8f feat(infra): infrastructure-as-code for DAP4 prod VPS (#12)
+c66b0cf fix(portal-familia): resolve TS2783 onBlur duplicate in LoginPage (#11)
+b4fd757 feat(portal-familia): wave 1 pendencias real + migrations groundwork (#10)
+cac063b fix(gateway): skip SecondBrain writes when path not accessible (#9)
+019e161 feat(meta): dual-waba WIP — env convention + routing + config brands (#7)
+b3ee394 test: backport parliament tests from PR #1 (minimal) (#8)
+c9f4b85 feat(portal-familia): DAP 4.0 Design System v1.0 + login redesign (#5)
+35fed2e chore(gitignore): ignore _archive, .superpowers, .vite build cache (#4)
+31578cb Merge pull request #3 from toliveira1802-sketch/feat/parts-odin
+3f32608 fix(parts): tighten BRL price extraction + filter results by code mention
+e9cc98b merge: integrate portal-familia wave 0 into feat/parts-odin
+c17aa62 chore(portal-familia): Dockerfile + nginx config for VPS deploy
+0fde64c feat(portal-familia): wave 0 scaffold + portal schema migration (#2)
+4e78c87 feat(parts): seed script for German premium catalog
+2f23af3 feat(parts): anchor pricing on web evidence when available
+da4289b feat(parts): Tavily web search wrapper + price_sources table
+dac5375 fix(parts): only forward user_id when caller is a real UUID user
+3ab5f2d feat(parts): Odin Parts recognition module — schema + backend + UI
+f92cc5b docs(gateway): scaffold Kommo stage IDs per tier per brand
+ae4bf16 feat(agents): Anna guardrails v1 — deterministic gates before LLM
+b8f6aed feat(crm): add lead scoring columns per Framework Leads Novos
+6d4e482 fix(agents): load prompt YAMLs as utf-8
+467d8cf feat(parliament): add POST skill test route (LLM role-play)
+cf2ade6 feat(parliament): add POST toggle subagent + toggle cron routes
+9cef558 feat(parliament): add GET /directors and /directors/:id routes
+5179f75 feat(parliament): kommo-chat honors parliament_subagents.active for ana
+a4f9c97 feat(parliament): gateway forwarders for C-Level hub (5 routes)
+6254039 feat(parliament): add subagent_paused + cron_paused guard helpers
+3a02643 feat(parliament): add test_skill LLM role-play runner
+cf00bb8 fix(security): require META_APP_SECRET at startup
+dccf449 fix(security): legacy webhook uses timingSafeEqual for secret comparison
+20e154d fix(security): META_APP_SECRET fail-closed when envvar unset
+8de1c1b feat(parliament): add toggle_subagent + toggle_cron
+de40dc1 feat(parliament): add list_directors + get_director queries
+26d6bba feat(parliament): add Pydantic models for C-Level hub
+a8d7844 feat(parliament): seed subagents, crons, skills, director_skills junction
+be2eb0c feat(parliament): seed 13 directors (Sennin Protocol v1)
+810b87c feat(parliament): add C-Level hub schema migration (6 tables)
+a363057 docs(parliament): add C-Level hub backend implementation plan (#22)
+2361cf3 docs(parliament): add C-Level hub backend design spec (#22)
+8bbffb0 fix(ana-chat): unblock /api/chat/message in prod
+683e00e fix(agents): align pytest with Docker runtime — remove outer __init__ + root conftest
+bfd5be9 feat(sophia-hub): cockpit ao vivo do 0613-B (Command Center IA)
+4313f86 fix(agents): green test suite — correct agents.* import paths + test env defaults
+21b796e fix(ops): deploy script — correct service list + guard ahead-commit loss
+7bbd3ab ops(deploy): phased rc1 deploy script for /opt/doctor-auto-ai + Caddy
+a201387 merge: integrate feat/whatsapp-kommo CRM sync into Kommo Hub Phase 1a
+196a7b7 docs(runbook): Phases 9-12 for Kommo Hub Phase 1a
+e3b87b3 fix(ops): wire handoff-TTL worker + atomic claim RPC + Zod Anna adapter
+723d21a fix(silent): propagate delivery failure + archiver error checks + Zod on Anna response
+f491c96 fix(db): RLS NULL guards + transactional migrations + canonical migration dir
+3252fbc fix(multitenant): per-call prompt override + pipelineFor + path-traversal guards
+242deab fix(security): constrain KommoChatRequest + harden dockerignore
+d235c60 feat(playground): local proxy server bypasses file:// CORS
+faf4cf2 feat(playground): single-file HTML playground for Anna RTBM iteration
+c5aaa2a feat(playground): lite script for Anna RTBM iteration
+cfa2971 feat(kommo): M3.4 + M4 + M5 + M6 + M7 — Kommo Hub Phase 1a complete
+2c016b9 docs(checkpoint): v5 — DAP-2 audit complete, tech debt logged
+97511b7 feat(kommo): wire Anna inbox worker into gateway boot
+a1d75fd feat(ana): M3.3 [STATUS:] parser + /agent/ana/kommo-chat endpoint
+cd70c80 feat(kommo): M3.1+M3.2 Anna inbox worker + result handler
+4d40ae6 fix(tests): resolve import chain + DAP-2 remaining fixes
+6258aae test(kommo): M2 Gate smoke — end-to-end webhook → anna_inbox
