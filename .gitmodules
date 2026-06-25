@@ -1,4 +1,5 @@
 [submodule "chapapiuro-memoria"]
+	pluginid = 31e3d746-7567-417e-9a7a-1b7890e7f508
 	path = chapapiuro-memoria
 	url = https://github.com/toliveira1802-sketch/chapapiuro-memoria.git
 	branch = main
