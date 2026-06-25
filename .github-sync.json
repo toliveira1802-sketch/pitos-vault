@@ -3,7 +3,7 @@
   "remote": "https://github.com/toliveira1802-sketch/pitos-vault.git",
   "branch": "main",
   "sync": {
-    "autoIntervalMin": 0,
+    "autoIntervalMin": 10,
     "ignorePatterns": [
       ".DS_Store",
       ".trash/**",
