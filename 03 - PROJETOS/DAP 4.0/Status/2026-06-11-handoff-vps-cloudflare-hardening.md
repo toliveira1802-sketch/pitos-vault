@@ -2,6 +2,7 @@
 
 **Data:** 2026-06-11 · **Autor:** Claude (sessão Thales) · **Host:** `76.13.170.42` (srv1303948)
 **Escopo:** auditoria completa da VPS + Cloudflare e remediação de segurança/infra.
+**Mover para:** vault `…/CHAIRMAN/PITOS/03 - PROJETOS/DAP 4.0/Status/` (não estava montado local nesta sessão).
 
 ---
 
