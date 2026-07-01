@@ -134,20 +134,20 @@ Cada transição de fase dispara 4 ações:
 
 Sophia = único agente. Diretores = skills com prompts especializados + acesso a MCPs e skills específicas.
 
-| Diretor | Cargo | Área | Skills | MCPs |
-|---|---|---|---|---|
-| **Anna** | CSO | Sales | lead-intelligence · investor-outreach · social-graph-ranker · connections-optimizer | Clay · HubSpot · Close · ClickUp |
-| **Bianca** | CMO | Marketing | brand-voice · seo · content-engine · crosspost · article-writing · x-api | Ahrefs · Similarweb · Webflow · Bitly · Windsor.ai · Gamma |
-| **Francisco** | CFO | Finance | finance-billing-ops · customer-billing-ops · ecc-tools-cost-audit · investor-materials | Supabase (reports) |
-| **Marta** | CGO | Growth | market-research · connections-optimizer · social-graph-ranker · lead-intelligence · seo | Ahrefs · Similarweb · Firecrawl · x-api |
-| **Rafael** | COO | Operations | automation-audit-ops · project-flow-ops · workspace-surface-audit · terminal-ops · unified-notifications-ops · github-ops | ClickUp · Slack · Gmail · Google Calendar · GitHub |
-| **Claudio** | CTO | Technology | backend-patterns · frontend-patterns · database-migrations · deployment-patterns · docker-patterns · mcp-server-patterns · api-design · **security-review · security-scan · security-bounty-hunter** | Supabase · Vercel · GitHub · Context7 · Chrome DevTools · Playwright |
-| **Thamy** | CDO | Design | frontend-design · liquid-glass-design · figma-implement-design · figma-generate-design · figma-generate-library · ui-demo · frontend-slides | Figma · Stitch · Excalidraw |
-| **Zoraide** | CCO | Customer | messages-ops · email-ops · customer-billing-ops | Gmail · Slack · Close · HubSpot |
-| **Walter** | CKO | Knowledge + Data | knowledge-ops · deep-research · research-ops · exa-search · iterative-retrieval · huggingface-* · clickhouse-io · postgres-patterns | Notion · NotebookLM · Hugging Face · Firecrawl · Supabase |
-| **Pitoco** | CPO | Product | product-capability · prp-prd · prp-plan · api-design · e2e-testing · ai-regression-testing | Playwright · Miro · Figma |
-| **Marcia** | CHRO | People | developmental-coach · content-engine (interno) | Notion · ClickUp · Slack |
-| **Chapapiuro** | CSO | Strategy | blueprint · council · market-research · investor-materials · deep-research | Notion · Miro · Firecrawl |
+| Diretor        | Cargo | Área             | Skills                                                                                                                                                                                               | MCPs                                                                 |
+| -------------- | ----- | ---------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| **Anna**       | CSO   | Sales            | lead-intelligence · investor-outreach · social-graph-ranker · connections-optimizer                                                                                                                  | Clay · HubSpot · Close · ClickUp                                     |
+| **Bianca**     | CMO   | Marketing        | brand-voice · seo · content-engine · crosspost · article-writing · x-api                                                                                                                             | Ahrefs · Similarweb · Webflow · Bitly · Windsor.ai · Gamma           |
+| **Francisco**  | CFO   | Finance          | finance-billing-ops · customer-billing-ops · ecc-tools-cost-audit · investor-materials                                                                                                               | Supabase (reports)                                                   |
+| **Marta**      | CGO   | Growth           | market-research · connections-optimizer · social-graph-ranker · lead-intelligence · seo                                                                                                              | Ahrefs · Similarweb · Firecrawl · x-api                              |
+| **THALES**     | COO   | Operations       | automation-audit-ops · project-flow-ops · workspace-surface-audit · terminal-ops · unified-notifications-ops · github-ops                                                                            | ClickUp · Slack · Gmail · Google Calendar · GitHub                   |
+| **Claudio**    | CTO   | Technology       | backend-patterns · frontend-patterns · database-migrations · deployment-patterns · docker-patterns · mcp-server-patterns · api-design · **security-review · security-scan · security-bounty-hunter** | Supabase · Vercel · GitHub · Context7 · Chrome DevTools · Playwright |
+| **Thamy**      | CDO   | Design           | frontend-design · liquid-glass-design · figma-implement-design · figma-generate-design · figma-generate-library · ui-demo · frontend-slides                                                          | Figma · Stitch · Excalidraw                                          |
+| **Zoraide**    | CCO   | Customer         | messages-ops · email-ops · customer-billing-ops                                                                                                                                                      | Gmail · Slack · Close · HubSpot                                      |
+| **Walter**     | CKO   | Knowledge + Data | knowledge-ops · deep-research · research-ops · exa-search · iterative-retrieval · huggingface-* · clickhouse-io · postgres-patterns                                                                  | Notion · NotebookLM · Hugging Face · Firecrawl · Supabase            |
+| **Pitoco**     | CPO   | Product          | product-capability · prp-prd · prp-plan · api-design · e2e-testing · ai-regression-testing                                                                                                           | Playwright · Miro · Figma                                            |
+| **Marcia**     | CHRO  | People           | developmental-coach · content-engine (interno)                                                                                                                                                       | Notion · ClickUp · Slack                                             |
+| **Chapapiuro** | CSO   | Strategy         | blueprint · council · market-research · investor-materials · deep-research                                                                                                                           | Notion · Miro · Firecrawl                                            |
 
 **Nota sobre CSOs:** Anna = Sales, Chapapiuro = Strategy. Sempre citar com cargo pra não confundir.
 
